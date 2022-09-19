@@ -1,0 +1,27 @@
+.Projects-item:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+.Projects-item-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.Projects-item-details {
+  font-weight: 600;
+}
+
+.Projects-item-date,
+.Projects-item-location {
+  font-style: italic;
+}
+
+.Projects-bullet-point {
+  margin-left: 1rem;
+  list-style: outside;
+}
+
+.Projects-bullet-point:not(:last-child) {
+  margin-bottom: 0.3rem;
+}
