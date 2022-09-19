@@ -1,0 +1,27 @@
+.Work-item:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+.Work-item-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.Work-item-details {
+  font-weight: 600;
+}
+
+.Work-item-date,
+.Work-item-location {
+  font-style: italic;
+}
+
+.Work-bullet-point {
+  margin-left: 1rem;
+  list-style: outside;
+}
+
+.Work-bullet-point:not(:last-child) {
+  margin-bottom: 0.3rem;
+}
