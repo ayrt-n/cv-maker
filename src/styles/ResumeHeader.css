@@ -1,0 +1,23 @@
+.Resume-Header {
+  text-align: center;
+}
+
+.Resume-Header-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.Resume-Header-subtitle-container {
+  display: flex;
+  justify-content: center;
+}
+
+.Resume-Header-subtitle {
+
+}
+
+.Resume-Header-subtitle:not(:last-child)::after {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  content: '|';
+}
