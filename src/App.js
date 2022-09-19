@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Resume from "./components/Resume";
 import './App.css';
+import uniqid from 'uniqid';
 
 class App extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ class App extends Component {
             location: "School Location",
             startDate: "Start Date",
             endDate: "End Date",
+            id: uniqid(),
           }
         ],
         workExperience: [
@@ -32,8 +34,12 @@ class App extends Component {
             endDate: "End Date",
             jobTitle: "Job Title",
             details: [
-              "Job details (e.g., responsibilities, achievements, highlights)",
-            ]
+              {
+                text: "Job details (e.g., responsibilities, achievements, highlights)",
+                id: uniqid(),
+              }
+            ],
+            id: uniqid(),
           }
         ],
         projects: [
@@ -42,8 +48,12 @@ class App extends Component {
             startDate: "Start Date",
             endDate: "End Date",
             details: [
-              "Project details (e.g., summary, achievments, lessons learned)",
-            ]
+              {
+                text: "Project details (e.g., summary, achievments, lessons learned)",
+                id: uniqid(),
+              }
+            ],
+            id: uniqid(),
           }
         ],
       }

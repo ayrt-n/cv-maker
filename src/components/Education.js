@@ -10,7 +10,7 @@ class Education extends Component {
         <div className="Education-container">
           {this.props.educationHistory.map((educationItem) => {
               return (
-                <div className="Education-item">
+                <div className="Education-item" key={ educationItem.id }>
                   <div className="Education-item-header">
                     <div className="Education-item-details">{ educationItem.program } | { educationItem.school }</div>
                     <div className="Education-item-date">{ educationItem.startDate } - { educationItem.endDate }</div>

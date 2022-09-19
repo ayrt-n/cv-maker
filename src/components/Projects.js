@@ -10,13 +10,18 @@ class Projects extends Component {
         <div className="Projects-container">
           {this.props.projects.map((project) => {
               return (
-                <div className="Projects-item">
+                <div className="Projects-item" key={ project.id }>
                   <div className="Projects-item-header">
                     <div className="Projects-item-details">{ project.name }</div>
                     <div className="Projects-item-date">{ project.startDate } - { project.endDate }</div>
                   </div>
                   <ul className="Projects-details">
-                    {project.details.map((detail) => (<li className="Projects-bullet-point">{detail}</li>))}
+                    { project.details.map((detail) => {
+                        return (
+                          <li className="Projects-bullet-point" key={ detail.id }>{ detail.text }</li>
+                        )
+                      })
+                    }
                   </ul>
                 </div>
               );
