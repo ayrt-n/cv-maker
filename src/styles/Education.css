@@ -1,0 +1,18 @@
+.Education-item:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+
+.Education-item-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.Education-item-details {
+  font-weight: 600;
+}
+
+.Education-item-date,
+.Education-item-location {
+  font-style: italic;
+}
