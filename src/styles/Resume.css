@@ -1,8 +1,13 @@
 .Resume {
+  /* Center Resume on page */
+  margin: 0 auto;
+
+  /* Size to look like paper */
   box-sizing: border-box;
   max-width: 816px;
   max-height: 1056px;
   aspect-ratio: 1/1.41421;
+
   background-color: #fafafa;
   border-radius: 3px;
   padding: 2.15rem 2rem;
