@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import Resume from "./components/Resume";
+import './styles/App.css';
 
 class App extends Component {
   render() {
       return (
-      <div>
+      <div className="App">
+        <Resume />
       </div>
     );
   }
