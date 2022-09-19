@@ -3,13 +3,15 @@ import '../styles/ResumeHeader.css';
 
 class ResumeHeader extends Component {
   render() {
+    const { name, location, phone, email } = this.props.headerContent;
+
     return (
       <div className="Resume-Header">
-        <h1 className="Resume-Header-title">{this.props.name}</h1>
+        <h1 className="Resume-Header-title">{name}</h1>
         <div className="Resume-Header-subtitle-container">
-          <h2 className="Resume-Header-subtitle">{this.props.location}</h2>
-          <h2 className="Resume-Header-subtitle">{this.props.phone}</h2>
-          <h2 className="Resume-Header-subtitle">{this.props.email}</h2>
+          <h2 className="Resume-Header-subtitle">{location}</h2>
+          <h2 className="Resume-Header-subtitle">{phone}</h2>
+          <h2 className="Resume-Header-subtitle">{email}</h2>
         </div>
       </div>
     )

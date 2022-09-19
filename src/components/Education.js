@@ -27,22 +27,3 @@ class Education extends Component {
 }
 
 export default Education;
-
-/*
-education: [
-  {
-    school: "Queen's University",
-    program: "Master of Arts in Economics",
-    location: "Kingston, ON",
-    startDate: "August 2016",
-    endDate: "August 2017",
-  },
-  {
-    school: "University of Ottawa",
-    program: "Bachelor of Social Science in Economics",
-    location: "Ottawa, ON",
-    startDate: "August 2012",
-    endDate: "April 2016",
-  }
-]
-*/
