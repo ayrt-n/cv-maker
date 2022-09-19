@@ -1,0 +1,11 @@
+.Resume-Section {
+  margin-bottom: 2rem;
+}
+
+.Resume-Section-title {
+  font-size: 1.3rem;
+  border-bottom: 1px solid black;
+  width: 100%;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
