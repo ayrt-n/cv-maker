@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ResumeHeader from "./ResumeHeader";
 import Skills from "./Skills";
+import Education from "./Education";
+
 import '../styles/Resume.css';
 
 class Resume extends Component {
@@ -14,8 +16,25 @@ class Resume extends Component {
           email='Ayrton.Parkinson1@gmail.com'
         />
         <Skills
-          title='Skills'
           skills={ ['Ruby', 'Ruby on Rails', 'HTML', 'CSS', 'JavaScript', 'React', 'Ruby', 'Ruby on Rails', 'HTML', 'CSS', 'JavaScript', 'React'] }
+        />
+        <Education
+          educationHistory={[
+            {
+              school: "Queen's University",
+              program: "Master of Arts in Economics",
+              location: "Kingston, ON",
+              startDate: "August 2016",
+              endDate: "August 2017",
+            },
+            {
+              school: "University of Ottawa",
+              program: "Bachelor of Social Science in Economics",
+              location: "Ottawa, ON",
+              startDate: "August 2012",
+              endDate: "April 2016",
+            }
+          ]}
         />
       </div>
     );
