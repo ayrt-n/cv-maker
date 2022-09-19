@@ -1,0 +1,13 @@
+.Skills-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Skills-bubble {
+  color: #fafafa;
+  background-color: #1e40af;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  margin-right: 1rem;
+  margin-bottom: 0.75rem;
+}
