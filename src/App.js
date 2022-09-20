@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Resume from "./components/Resume";
 import HeaderForm from "./components/HeaderForm";
+import EducationForm from "./components/EducationForm";
 import './App.css';
 import uniqid from 'uniqid';
 
@@ -8,7 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.onHeaderSubmitHandler = this.onHeaderSubmitHandler.bind(this);
+    this.handleHeaderSubmit = this.handleHeaderSubmit.bind(this);
+    this.handleEducationSubmit = this.handleEducationSubmit.bind(this);
 
     this.state = {
       resumeContent: {
@@ -20,6 +22,14 @@ class App extends Component {
         },
         skills: [],
         educationHistory: [
+          {
+            school: "School Name",
+            program: "Program",
+            location: "School Location",
+            startDate: "Start Date",
+            endDate: "End Date",
+            id: uniqid(),
+          },
           {
             school: "School Name",
             program: "Program",
@@ -63,7 +73,7 @@ class App extends Component {
     }
   }
 
-  onHeaderSubmitHandler(formState) {
+  handleHeaderSubmit(formState) {
     const { name, location, phone, email } = formState;
     const tmpState = {...this.state};
     tmpState.resumeContent.header.name = name;
@@ -73,10 +83,17 @@ class App extends Component {
     this.setState({ tmpState });
   }
 
+  handleEducationSubmit(formState) {
+    const tmpState = {...this.state};
+    tmpState.resumeContent.educationHistory = formState;
+    this.setState({ tmpState });
+  }
+
   render() {
       return (
       <div className="App">
-        <HeaderForm resumeContent={ this.state.resumeContent } onSubmitHandler={this.onHeaderSubmitHandler} />
+        <HeaderForm resumeContent={ this.state.resumeContent } handleSubmit={this.handleHeaderSubmit} />
+        <EducationForm resumeContent={ this.state.resumeContent } handleSubmit={this.handleEducationSubmit}/>
         <Resume resumeContent={ this.state.resumeContent }/>
       </div>
     );
