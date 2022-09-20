@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Resume from "./components/Resume";
+import HeaderForm from "./components/HeaderForm";
 import './App.css';
 import uniqid from 'uniqid';
 
@@ -7,10 +8,12 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.onHeaderSubmitHandler = this.onHeaderSubmitHandler.bind(this);
+
     this.state = {
       resumeContent: {
         header: {
-          name: 'First Last',
+          name: 'Full Name',
           location: 'Location',
           phone: 'Phone #',
           email: 'Email',
@@ -60,9 +63,20 @@ class App extends Component {
     }
   }
 
+  onHeaderSubmitHandler(formState) {
+    const { name, location, phone, email } = formState;
+    const tmpState = {...this.state};
+    tmpState.resumeContent.header.name = name;
+    tmpState.resumeContent.header.location = location;
+    tmpState.resumeContent.header.phone = phone;
+    tmpState.resumeContent.header.email = email;
+    this.setState({ tmpState });
+  }
+
   render() {
       return (
       <div className="App">
+        <HeaderForm resumeContent={ this.state.resumeContent } onSubmitHandler={this.onHeaderSubmitHandler} />
         <Resume resumeContent={ this.state.resumeContent }/>
       </div>
     );
