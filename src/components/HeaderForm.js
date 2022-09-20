@@ -12,21 +12,20 @@ class HeaderForm extends Component {
       email: this.props.resumeContent.header.email,
     }
 
-
-    this.onChangeHandler = this.onChangeHandler.bind(this);
-    this.onSubmitHandler = this.onSubmitHandler.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
   }
 
-  onChangeHandler(e) {
+  handleInputChange(e) {
     this.setState({
       [e.target.id]: e.target.value
     })
   }
 
-  onSubmitHandler(e) {
+  handleSubmit(e) {
     e.preventDefault();
-    this.props.onSubmitHandler(this.state);
+    this.props.handleSubmit(this.state);
   }
 
   cancelEdit(e) {
@@ -41,18 +40,18 @@ class HeaderForm extends Component {
 
   render() {
     return (
-      <form className="Form" onSubmit={this.onSubmitHandler}>
+      <form className="Form" onSubmit={this.handleSubmit}>
         <label htmlFor="name">Full name</label>
-        <input type="text" value={ this.state.name } id="name" onChange={ this.onChangeHandler }></input>
+        <input type="text" value={ this.state.name } id="name" onChange={ this.handleInputChange }></input>
 
         <label htmlFor="location">Location</label>
-        <input type="text" value={ this.state.location } id="location" onChange={ this.onChangeHandler }></input>
+        <input type="text" value={ this.state.location } id="location" onChange={ this.handleInputChange }></input>
 
         <label htmlFor="phone">Phone Number</label>
-        <input type="text" value={ this.state.phone } id="phone" onChange={ this.onChangeHandler }></input>
+        <input type="text" value={ this.state.phone } id="phone" onChange={ this.handleInputChange }></input>
 
         <label htmlFor="email">Email</label>
-        <input type="text" value={ this.state.email } id="email" onChange={ this.onChangeHandler }></input>
+        <input type="text" value={ this.state.email } id="email" onChange={ this.handleInputChange }></input>
 
         <button type="submit">Save</button>
         <button onClick={ this.cancelEdit }>Cancel</button>
