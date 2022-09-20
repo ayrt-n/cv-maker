@@ -53,9 +53,35 @@ class App extends Component {
               }
             ],
             id: uniqid(),
+          },
+          {
+            employerName: "Employer Name",
+            location: "Employer Location",
+            startDate: "Start Date",
+            endDate: "End Date",
+            jobTitle: "Job Title",
+            details: [
+              {
+                text: "Job details (e.g., responsibilities, achievements, highlights)",
+                id: uniqid(),
+              }
+            ],
+            id: uniqid(),
           }
         ],
         projects: [
+          {
+            name: "Project Name",
+            startDate: "Start Date",
+            endDate: "End Date",
+            details: [
+              {
+                text: "Project details (e.g., summary, achievments, lessons learned)",
+                id: uniqid(),
+              }
+            ],
+            id: uniqid(),
+          },
           {
             name: "Project Name",
             startDate: "Start Date",
