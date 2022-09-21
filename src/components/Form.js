@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import HeaderForm from "./HeaderForm";
+import EducationForm from "./EducationForm";
 import '../styles/Form.css';
 
 class Form extends Component {
@@ -10,6 +11,9 @@ class Form extends Component {
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleHeaderChange = this.handleHeaderChange.bind(this);
+    this.handleEducationChange = this.handleEducationChange.bind(this);
+    this.addEducation = this.addEducation.bind(this);
+    this.removeEducation = this.removeEducation.bind(this);
   }
 
   handleFormSubmit(e) {
@@ -26,6 +30,36 @@ class Form extends Component {
     })
   }
 
+  handleEducationChange(e) {
+    const targetIndex = e.target.closest('[data-education-index]').dataset.educationIndex
+    const targetKey = e.target.dataset.objectKey;
+    const { educationHistory } = this.state;
+
+    if (targetIndex) {
+      educationHistory[targetIndex][targetKey] = e.target.value;
+      this.setState({
+        educationHistory
+      });
+    }
+  }
+
+  addEducation(emptyEducationObj) {
+    this.setState({
+      educationHistory: this.state.educationHistory.concat(emptyEducationObj)
+    })
+  }
+
+  removeEducation(e) {
+    const targetIndex = e.target.closest('[data-education-index]').dataset.educationIndex
+    const { educationHistory } = this.state;
+
+    if (targetIndex) {
+      educationHistory.splice(targetIndex, 1);
+      this.setState({
+        educationHistory
+      });
+    }
+  }
 
   render() {
     const { header, skills, educationHistory, workExperience, projects } = this.state;
@@ -33,6 +67,7 @@ class Form extends Component {
     return (
       <form onSubmit={ this.handleFormSubmit }>
         <HeaderForm header={ header } handleChange={ this.handleHeaderChange } />
+        <EducationForm educationHistory={ educationHistory } handleChange={ this.handleEducationChange } addEducation={ this.addEducation } removeEducation={ this.removeEducation } />
         <button type="submit">Save</button>
       </form>
     );
