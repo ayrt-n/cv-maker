@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import InputFormField from "./InputFormField";
 import '../styles/Form.css';
 
 class HeaderForm extends Component {
@@ -18,6 +19,7 @@ class HeaderForm extends Component {
   }
 
   handleInputChange(e) {
+    console.log(e.target.id);
     this.setState({
       [e.target.id]: e.target.value
     })
@@ -41,17 +43,10 @@ class HeaderForm extends Component {
   render() {
     return (
       <form className="Form" onSubmit={this.handleSubmit}>
-        <label htmlFor="name">Full name</label>
-        <input type="text" value={ this.state.name } id="name" onChange={ this.handleInputChange }></input>
-
-        <label htmlFor="location">Location</label>
-        <input type="text" value={ this.state.location } id="location" onChange={ this.handleInputChange }></input>
-
-        <label htmlFor="phone">Phone Number</label>
-        <input type="text" value={ this.state.phone } id="phone" onChange={ this.handleInputChange }></input>
-
-        <label htmlFor="email">Email</label>
-        <input type="text" value={ this.state.email } id="email" onChange={ this.handleInputChange }></input>
+        <InputFormField value={ this.state.name } label="Full Name" id="name" handleInputChange={ this.handleInputChange } />
+        <InputFormField value={ this.state.location } label="Location" id="location" handleInputChange={ this.handleInputChange } />
+        <InputFormField value={ this.state.phone } label="Phone Number" id="phone" handleInputChange={ this.handleInputChange } />
+        <InputFormField value={ this.state.email } label="E-mail" id="email" handleInputChange={ this.handleInputChange } />
 
         <button type="submit">Save</button>
         <button onClick={ this.cancelEdit }>Cancel</button>

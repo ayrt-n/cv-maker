@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import InputFormField from "./InputFormField";
 import '../styles/Form.css';
 
 class WorkForm extends Component {
@@ -14,7 +15,7 @@ class WorkForm extends Component {
   }
 
   handleInputChange(e) {
-    const workId = e.target.closest('div').id;
+    const workId = e.target.closest('div.workItem').id;
     const { workExperience } = this.state;
 
     const targetIndex = workExperience.findIndex((workItem) => (workItem.id === workId));
@@ -38,18 +39,26 @@ class WorkForm extends Component {
       <form className="Form" onSubmit={this.handleSubmit}>
         { this.state.workExperience.map((workItem) => {
           return(
-            <div key={ workItem.id } id={ workItem.id }>
-              <label htmlFor={`employer-${workItem.id}`}>Employer Name</label>
-              <input type="text" value={ workItem.employerName } id={`employer-${workItem.id}`} data-object-key="employerName" onChange={this.handleInputChange}></input>
+            <div key={ workItem.id } id={ workItem.id } className="workItem">
+              <InputFormField value={workItem.employerName} label="Employer Name" id={`employer-${workItem.id}`} objectKey="employerName" handleInputChange={this.handleInputChange} />
 
-              <label htmlFor={`location-${workItem.id}`}>Location</label>
-              <input type="text" value={ workItem.location } id={`location-${workItem.id}`} data-object-key="location" onChange={this.handleInputChange}></input>
+              <InputFormField value={workItem.location} label="Location" id={`location-${workItem.id}`} objectKey="location" handleInputChange={this.handleInputChange} />
 
-              <label htmlFor={`start-${workItem.id}`}>Start Date</label>
-              <input type="text" value={ workItem.startDate } id={`start-${workItem.id}`} data-object-key="startDate" onChange={this.handleInputChange}></input>
+              <InputFormField value={workItem.startDate} label="Start Date" id={`start-${workItem.id}`} objectKey="startDate" handleInputChange={this.handleInputChange} />
 
-              <label htmlFor={`end-${workItem.id}`}>End Date</label>
-              <input type="text" value={ workItem.endDate } id={`end-${workItem.id}`} data-object-key="endDate" onChange={this.handleInputChange}></input>
+              <InputFormField value={workItem.endDate} label="End Date" id={`end-${workItem.id}`} objectKey="endDate" handleInputChange={this.handleInputChange} />
+
+              <label htmlFor={`details-${workItem.id}`}>Job Description</label>
+              { workItem.details.map((detail) => {
+                    return (
+                      <div key={ detail.id } id={ detail.id }>
+                        <label htmlFor={`detail-${detail.id}`}>?</label>
+                        <input type="text" value={ detail.text } id={`details-${workItem.id}`} data-object-key="details" onChange={this.handleInputChange}></input>
+                      </div>
+                    );
+                  }  
+                )
+              }
             </div>
           );
         })}
@@ -60,3 +69,16 @@ class WorkForm extends Component {
 }
 
 export default WorkForm;
+
+// employerName: "Employer Name",
+// location: "Employer Location",
+// startDate: "Start Date",
+// endDate: "End Date",
+// jobTitle: "Job Title",
+// details: [
+//   {
+//     text: "Job details (e.g., responsibilities, achievements, highlights)",
+//     id: uniqid(),
+//   }
+// ],
+// id: uniqid(),

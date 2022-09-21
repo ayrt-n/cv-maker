@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import InputFormField from "./InputFormField";
 import '../styles/Form.css';
 import uniqid from 'uniqid';
 
@@ -28,7 +29,7 @@ class EducationForm extends Component {
   }
 
   handleInputChange(e) {
-    const educationId = e.target.closest('div').id;
+    const educationId = e.target.closest('div.educationItem').id;
     const { educationHistory } = this.state;
 
     const targetIndex = educationHistory.findIndex((educationItem) => (educationItem.id === educationId));
@@ -72,21 +73,12 @@ class EducationForm extends Component {
       <form className="Form" onSubmit={ this.handleSubmit }>
         { this.state.educationHistory.map((educationItem) => {
             return (
-              <div key={ educationItem.id } id={ educationItem.id }>
-                <label htmlFor={`school-${educationItem.id}`}>School Name</label>
-                <input type="text" value={ educationItem.school } id={`school-${educationItem.id}`} onChange={ this.handleInputChange } data-object-key="school"></input>
-
-                <label htmlFor={`program-${educationItem.id}`}>Program</label>
-                <input type="text" value={ educationItem.program } id={`program-${educationItem.id}`} onChange={ this.handleInputChange } data-object-key="program"></input>
-
-                <label htmlFor={`start-${educationItem.id}`}>Start Date</label>
-                <input type="text" value={ educationItem.startDate } id={`start-${educationItem.id}`} onChange={ this.handleInputChange } data-object-key="startDate"></input>
-
-                <label htmlFor={`end-${educationItem.id}`}>End Date</label>
-                <input type="text" value={ educationItem.endDate } id={`end-${educationItem.id}`} onChange={ this.handleInputChange } data-object-key="endDate"></input>
-
-                <label htmlFor={`location-${educationItem.id}`}>School Location</label>
-                <input type="text" value={ educationItem.location } id={`location-${educationItem.id}`} onChange={ this.handleInputChange } data-object-key="location"></input>
+              <div key={ educationItem.id } id={ educationItem.id } className="educationItem">
+                <InputFormField value={ educationItem.school } label="School Name" id={ `school-${educationItem.id}` } objectKey="school" handleInputChange={ this.handleInputChange } />
+                <InputFormField value={ educationItem.program } label="Program" id={ `program-${educationItem.id}` } objectKey="program" handleInputChange={ this.handleInputChange } />
+                <InputFormField value={ educationItem.startDate } label="Start Date" id={ `start-${educationItem.id}` } objectKey="startDate" handleInputChange={ this.handleInputChange } />
+                <InputFormField value={ educationItem.endDate } label="End Date" id={ `end-${educationItem.id}` } objectKey="endDate" handleInputChange={ this.handleInputChange } />
+                <InputFormField value={ educationItem.location } label="Location" id={ `location-${educationItem.id}` } objectKey="location" handleInputChange={ this.handleInputChange } />
 
                 <button onClick={this.removeEducation}>Delete</button>
               </div>
