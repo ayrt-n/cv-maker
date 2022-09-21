@@ -13,21 +13,11 @@ class Resume extends Component {
 
     return (
       <div className='Resume'>
-        <ResumeHeader
-          headerContent={ header }
-        />
-        <Skills
-          skills={ skills }
-        />
-        <Education
-          educationHistory={ educationHistory }
-        />
-        <Work
-          workExperience={ workExperience }
-        />
-        <Projects
-          projects={ projects }
-        />
+        <ResumeHeader headerContent={ header } />
+        <Skills skills={ skills } />
+        <Education educationHistory={ educationHistory } />
+        <Work workExperience={ workExperience } />
+        <Projects projects={ projects } />
       </div>
     );
   }
