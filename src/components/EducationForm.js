@@ -7,7 +7,7 @@ class EducationForm extends Component {
     super(props);
 
     this.state = {
-      educationHistory: this.props.resumeContent.educationHistory.slice(),
+      educationHistory: this.props.resumeContent.educationHistory,
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -32,13 +32,13 @@ class EducationForm extends Component {
     const { educationHistory } = this.state;
 
     const targetIndex = educationHistory.findIndex((educationItem) => (educationItem.id === educationId));
-    const targetKey = e.target.dataset.objectKey
+    const targetKey = e.target.dataset.objectKey;
 
     if (targetIndex !== -1) {
       educationHistory[targetIndex][targetKey] = e.target.value;
       this.setState({
         educationHistory
-      })
+      });
     }
   }
 
