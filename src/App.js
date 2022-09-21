@@ -4,6 +4,7 @@ import HeaderForm from "./components/HeaderForm";
 import EducationForm from "./components/EducationForm";
 import './App.css';
 import uniqid from 'uniqid';
+import WorkForm from "./components/WorkForm";
 
 class App extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class App extends Component {
 
     this.handleHeaderSubmit = this.handleHeaderSubmit.bind(this);
     this.handleEducationSubmit = this.handleEducationSubmit.bind(this);
+    this.handleWorkSubmit = this.handleWorkSubmit.bind(this);
 
     this.state = {
       resumeContent: {
@@ -115,11 +117,18 @@ class App extends Component {
     this.setState({ tmpState });
   }
 
+  handleWorkSubmit(formState) {
+    const tmpState = {...this.state};
+    tmpState.resumeContent.workExperience = formState;
+    this.setState({ tmpState });
+  }
+
   render() {
       return (
       <div className="App">
         <HeaderForm resumeContent={ this.state.resumeContent } handleSubmit={this.handleHeaderSubmit} />
-        <EducationForm resumeContent={ this.state.resumeContent } handleSubmit={this.handleEducationSubmit}/>
+        <EducationForm resumeContent={ this.state.resumeContent } handleSubmit={this.handleEducationSubmit} />
+        <WorkForm resumeContent={ this.state.resumeContent } handleSubmit={this.handleWorkSubmit} />
         <Resume resumeContent={ this.state.resumeContent }/>
       </div>
     );
