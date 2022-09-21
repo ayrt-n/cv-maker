@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Resume from "./components/Resume";
 import HeaderForm from "./components/HeaderForm";
 import EducationForm from "./components/EducationForm";
+import Form from "./components/Form";
 import './App.css';
 import uniqid from 'uniqid';
 import WorkForm from "./components/WorkForm";
@@ -10,9 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.handleHeaderSubmit = this.handleHeaderSubmit.bind(this);
-    this.handleEducationSubmit = this.handleEducationSubmit.bind(this);
-    this.handleWorkSubmit = this.handleWorkSubmit.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
 
     this.state = {
       resumeContent: {
@@ -101,34 +100,16 @@ class App extends Component {
     }
   }
 
-  handleHeaderSubmit(formState) {
-    const { name, location, phone, email } = formState;
-    const tmpState = {...this.state};
-    tmpState.resumeContent.header.name = name;
-    tmpState.resumeContent.header.location = location;
-    tmpState.resumeContent.header.phone = phone;
-    tmpState.resumeContent.header.email = email;
-    this.setState({ tmpState });
-  }
-
-  handleEducationSubmit(formState) {
-    const tmpState = {...this.state};
-    tmpState.resumeContent.educationHistory = formState;
-    this.setState({ tmpState });
-  }
-
-  handleWorkSubmit(formState) {
-    const tmpState = {...this.state};
-    tmpState.resumeContent.workExperience = formState;
-    this.setState({ tmpState });
+  handleFormSubmit(newResumeContent) {
+    this.setState({
+      resumeContent: newResumeContent
+    })
   }
 
   render() {
       return (
       <div className="App">
-        <HeaderForm resumeContent={ this.state.resumeContent } handleSubmit={this.handleHeaderSubmit} />
-        <EducationForm resumeContent={ this.state.resumeContent } handleSubmit={this.handleEducationSubmit} />
-        <WorkForm resumeContent={ this.state.resumeContent } handleSubmit={this.handleWorkSubmit} />
+        <Form resumeContent={ this.state.resumeContent } handleFormSubmit={ this.handleFormSubmit } />
         <Resume resumeContent={ this.state.resumeContent }/>
       </div>
     );
