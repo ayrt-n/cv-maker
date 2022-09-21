@@ -15,6 +15,7 @@ class WorkForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNestedInputChange = this.handleNestedInputChange.bind(this);
     this.addJobDescription = this.addJobDescription.bind(this);
+    this.removeJobDescription = this.removeJobDescription.bind(this);
   }
 
   createJobDescriptionBullet() {
@@ -76,6 +77,23 @@ class WorkForm extends Component {
     }
   }
 
+  removeJobDescription(e) {
+    const workId = e.target.closest('div.workItem').id;
+    const detailId = e.target.closest('div').id;
+    const { workExperience } = this.state;
+
+    const targetIndex = workExperience.findIndex((workItem) => (workItem.id === workId));
+    const targetSubIndex = workExperience[targetIndex]['details'].findIndex((detail) => (detail.id === detailId));
+    
+    if (targetIndex !== -1 && targetSubIndex !== -1) {
+      workExperience[targetIndex]['details'].splice([targetSubIndex], 1);
+
+      this.setState({
+        workExperience
+      });
+    }
+  }
+
   render() {
     return (
       <form className="Form" onSubmit={this.handleSubmit}>
@@ -92,6 +110,7 @@ class WorkForm extends Component {
                     return (
                       <div key={ detail.id } id={ detail.id }>
                         <input type="text" value={ detail.text } id={`details-${workItem.id}`} onChange={this.handleNestedInputChange}></input>
+                        <button onClick={this.removeJobDescription}>Remove Job Description</button>
                       </div>
                     );
                   }  
