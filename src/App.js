@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import Resume from "./components/Resume";
-import HeaderForm from "./components/HeaderForm";
-import EducationForm from "./components/EducationForm";
 import Form from "./components/Form";
 import './App.css';
 import uniqid from 'uniqid';
-import WorkForm from "./components/WorkForm";
 
 class App extends Component {
   constructor(props) {
