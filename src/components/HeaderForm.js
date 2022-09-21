@@ -6,11 +6,11 @@ class HeaderForm extends Component {
   constructor(props) {
     super(props);
 
-    this.handleHeaderChange = this.handleHeaderChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleHeaderChange(e) {
-    this.props.handleHeaderChange(e);
+  handleChange(e) {
+    this.props.handleChange(e);
   }
 
   render() {
@@ -18,10 +18,10 @@ class HeaderForm extends Component {
 
     return (
       <div>
-        <InputFormField value={ name } label="Full Name" id="name" handleInputChange={ this.handleHeaderChange } />
-        <InputFormField value={ location } label="Location" id="location" handleInputChange={ this.handleHeaderChange } />
-        <InputFormField value={ phone } label="Phone Number" id="phone" handleInputChange={ this.handleHeaderChange } />
-        <InputFormField value={ email } label="E-mail" id="email" handleInputChange={ this.handleHeaderChange } />
+        <InputFormField value={ name } label="Full Name" id="name" handleInputChange={ this.handleChange } />
+        <InputFormField value={ location } label="Location" id="location" handleInputChange={ this.handleChange } />
+        <InputFormField value={ phone } label="Phone Number" id="phone" handleInputChange={ this.handleChange } />
+        <InputFormField value={ email } label="E-mail" id="email" handleInputChange={ this.handleChange } />
       </div>
     );
   }
