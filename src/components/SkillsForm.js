@@ -29,7 +29,7 @@ class SkillsForm extends Component {
 
   addSkill(e) {
     e.preventDefault();
-    this.props.addSkill(this.state.skill);
+    this.props.addSkill(e, this.state.skill);
     this.setState({
       skill: {
         text: '',
@@ -44,13 +44,13 @@ class SkillsForm extends Component {
 
   render() {
     return (
-      <div>
+      <div data-section="skills">
         <InputFormField value={ this.state.skill.text } label="Skills"  id="skills" objectKey="skills" handleInputChange={ this.handleChange } />
         <button onClick={ this.addSkill } value={ this.state.skill.text }>Add Skill</button>
         <div className="Skills-container">
           { this.props.skills.map((skill, index) => {
               return (
-                <div key={ skill.id } data-skill-index={ index }>
+                <div key={ skill.id } data-section-index={ index }>
                   <div className="Skills-bubble">
                     { skill.text }
                   </div>
