@@ -47,7 +47,7 @@ class ProjectForm extends Component {
 
   addProject(e) {
     e.preventDefault();
-    this.props.addProject(this.createProjectObj());
+    this.props.addProject(e, this.createProjectObj());
   }
 
   removeProject(e) {
@@ -67,10 +67,10 @@ class ProjectForm extends Component {
 
   render() {
     return (
-      <div>
+      <div data-section="projects">
         { this.props.projects.map((project, index) => {
             return(
-              <div key={ project.id } data-section="projects" data-section-index={ index }>
+              <div key={ project.id } data-section-index={ index }>
                 <InputFormField value={project.name} label="Project Name" id={`name-${project.id}`} objectKey="name" handleInputChange={this.handleChange} />
                 <InputFormField value={project.startDate} label="Start Date" id={`start-${project.id}`} objectKey="startDate" handleInputChange={this.handleChange} />
                 <InputFormField value={project.endDate} label="End Date" id={`end-${project.id}`} objectKey="endDate" handleInputChange={this.handleChange} />

@@ -29,7 +29,7 @@ class EducationForm extends Component {
 
   addEducation(e) {
     e.preventDefault();
-    this.props.addEducation(this.createNewEducationObj());
+    this.props.addEducation(e, this.createNewEducationObj());
   }
 
   removeEducation(e) {
@@ -39,10 +39,10 @@ class EducationForm extends Component {
 
   render() {
     return (
-      <div>
+      <div data-section="educationHistory">
         { this.props.educationHistory.map((educationItem, index) => {
             return (
-              <div key={ educationItem.id } data-section="educationHistory" data-section-index={ index }>
+              <div key={ educationItem.id } data-section-index={ index }>
                 <InputFormField value={ educationItem.school } label="School Name" id={ `school-${educationItem.id}` } objectKey="school" handleInputChange={ this.handleChange } />
                 <InputFormField value={ educationItem.program } label="Program" id={ `program-${educationItem.id}` } objectKey="program" handleInputChange={ this.handleChange } />
                 <InputFormField value={ educationItem.startDate } label="Start Date" id={ `start-${educationItem.id}` } objectKey="startDate" handleInputChange={ this.handleChange } />
