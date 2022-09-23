@@ -62,7 +62,7 @@ class Form extends Component {
 
   removeResumeSectionElement(e) {
     const targetSection = e.target.closest('[data-section]').dataset.section;
-    const targetIndex = e.target.closest('[data-section-index]').dataset.skillIndex;
+    const targetIndex = e.target.closest('[data-section-index]').dataset.sectionIndex;
     
     this.setState(prevState => {
       const resumeSection = [...prevState[targetSection]];
