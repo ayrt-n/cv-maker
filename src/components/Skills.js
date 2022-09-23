@@ -8,7 +8,7 @@ class Skills extends Component {
       <div className="Resume-Section">
         <h2 className="Resume-Section-title">Skills</h2>
         <div className="Skills-container">
-          { this.props.skills.map((skill) => (<div className="Skills-bubble">{skill}</div>)) }
+          { this.props.skills.map((skill) => (<div key={ skill.id } className="Skills-bubble">{ skill.text }</div>)) }
         </div>
       </div>
     );
