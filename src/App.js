@@ -18,7 +18,12 @@ class App extends Component {
           phone: 'Phone #',
           email: 'Email',
         },
-        skills: [],
+        skills: [
+          {
+            text: 'Ruby',
+            id: uniqid(),
+          }
+        ],
         educationHistory: [
           {
             school: "School Name",
