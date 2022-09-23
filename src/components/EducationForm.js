@@ -42,7 +42,7 @@ class EducationForm extends Component {
       <div>
         { this.props.educationHistory.map((educationItem, index) => {
             return (
-              <div key={ educationItem.id } data-education-index={ index } className="educationItem">
+              <div key={ educationItem.id } data-education-index={ index }>
                 <InputFormField value={ educationItem.school } label="School Name" id={ `school-${educationItem.id}` } objectKey="school" handleInputChange={ this.handleChange } />
                 <InputFormField value={ educationItem.program } label="Program" id={ `program-${educationItem.id}` } objectKey="program" handleInputChange={ this.handleChange } />
                 <InputFormField value={ educationItem.startDate } label="Start Date" id={ `start-${educationItem.id}` } objectKey="startDate" handleInputChange={ this.handleChange } />
