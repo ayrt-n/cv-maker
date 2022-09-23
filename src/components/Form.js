@@ -67,68 +67,6 @@ class Form extends Component {
     })
   }
 
-  addSkill(skillObj) {
-    this.setState({
-      skills: this.state.skills.concat(skillObj)
-    });
-  }
-
-  removeSkill(e) {
-    const targetIndex = e.target.closest('[data-skill-index]').dataset.skillIndex;
-    const { skills } = this.state;
-
-    if (targetIndex) {
-      skills.splice(targetIndex, 1)
-      this.setState({
-        skills
-      });
-    }
-  }
-
-  handleEducationChange(e) {
-    const targetIndex = e.target.closest('[data-education-index]').dataset.educationIndex;
-    const targetKey = e.target.dataset.objectKey;
-    const { educationHistory } = this.state;
-
-    if (targetIndex) {
-      educationHistory[targetIndex][targetKey] = e.target.value;
-      this.setState({
-        educationHistory
-      });
-    }
-  }
-
-  addEducation(emptyEducationObj) {
-    this.setState({
-      educationHistory: this.state.educationHistory.concat(emptyEducationObj)
-    });
-  }
-
-  removeEducation(e) {
-    const targetIndex = e.target.closest('[data-education-index]').dataset.educationIndex;
-    const { educationHistory } = this.state;
-
-    if (targetIndex) {
-      educationHistory.splice(targetIndex, 1);
-      this.setState({
-        educationHistory
-      });
-    }
-  }
-
-  handleWorkChange(e) {
-    const targetIndex  = e.target.closest('[data-work-index]').dataset.workIndex;
-    const targetKey = e.target.dataset.objectKey;
-    const { workExperience } = this.state;
-
-    if (targetIndex) {
-      workExperience[targetIndex][targetKey] = e.target.value;
-      this.setState({
-        workExperience
-      });
-    }
-  }
-
   handleWorkDetailChange(e) {
     const targetIndex  = e.target.closest('[data-work-index]').dataset.workIndex;
     const targetDetailIndex = e.target.closest('[data-work-detail-index]').dataset.workDetailIndex;
@@ -138,24 +76,6 @@ class Form extends Component {
     if (targetIndex && targetDetailIndex) {
       workExperience[targetIndex][targetKey][targetDetailIndex].text = e.target.value;
       this.setState({ workExperience });
-    }
-  }
-
-  addWorkExperience(emptyWorkExperienceObj) {
-    this.setState({
-      workExperience: this.state.workExperience.concat(emptyWorkExperienceObj)
-    });
-  }
-
-  removeWorkExperience(e) {
-    const targetIndex = e.target.closest('[data-work-index]').dataset.workIndex;
-    const { workExperience } = this.state;
-
-    if (targetIndex) {
-      workExperience.splice(targetIndex, 1);
-      this.setState({
-        workExperience
-      });
     }
   }
 
