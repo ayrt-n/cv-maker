@@ -86,7 +86,7 @@ class WorkForm extends Component {
                           <button onClick={ this.removeWorkDetail } data-object-key="details">Remove Job Description</button>
                         </div>
                       );
-                    }  
+                    }
                   )
                 }
                 <button onClick={ this.addWorkDetail }>Add Job Description</button>
@@ -102,16 +102,3 @@ class WorkForm extends Component {
 }
 
 export default WorkForm;
-
-// employerName: "Employer Name",
-// location: "Employer Location",
-// startDate: "Start Date",
-// endDate: "End Date",
-// jobTitle: "Job Title",
-// details: [
-//   {
-//     text: "Job details (e.g., responsibilities, achievements, highlights)",
-//     id: uniqid(),
-//   }
-// ],
-// id: uniqid(),
