@@ -72,7 +72,7 @@ class WorkForm extends Component {
       <div>
         { this.props.workExperience.map((workItem, index) => {
             return(
-              <div key={ workItem.id } data-work-index={ index }>
+              <div key={ workItem.id } data-section="workExperience" data-section-index={ index }>
                 <InputFormField value={workItem.employerName} label="Employer Name" id={`employer-${workItem.id}`} objectKey="employerName" handleInputChange={this.handleChange} />
                 <InputFormField value={workItem.location} label="Location" id={`location-${workItem.id}`} objectKey="location" handleInputChange={this.handleChange} />
                 <InputFormField value={workItem.startDate} label="Start Date" id={`start-${workItem.id}`} objectKey="startDate" handleInputChange={this.handleChange} />
