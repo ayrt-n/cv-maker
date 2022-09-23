@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import HeaderForm from "./HeaderForm";
+import SkillsForm from "./SkillsForm";
 import EducationForm from "./EducationForm";
 import WorkForm from "./WorkForm";
+import uniqid from 'uniqid';
 import '../styles/Form.css';
 
 class Form extends Component {
@@ -12,6 +14,8 @@ class Form extends Component {
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleHeaderChange = this.handleHeaderChange.bind(this);
+    this.addSkill = this.addSkill.bind(this);
+    this.removeSkill = this.removeSkill.bind(this);
     this.handleEducationChange = this.handleEducationChange.bind(this);
     this.addEducation = this.addEducation.bind(this);
     this.removeEducation = this.removeEducation.bind(this);
@@ -35,6 +39,24 @@ class Form extends Component {
     this.setState({
       header: tmpHeader
     })
+  }
+
+  addSkill(skillObj) {
+    this.setState({
+      skills: this.state.skills.concat(skillObj)
+    });
+  }
+
+  removeSkill(e) {
+    const targetIndex = e.target.closest('[data-skill-index]').dataset.skillIndex;
+    const { skills } = this.state;
+
+    if (targetIndex) {
+      skills.splice(targetIndex, 1)
+      this.setState({
+        skills
+      });
+    }
   }
 
   handleEducationChange(e) {
@@ -142,6 +164,7 @@ class Form extends Component {
     return (
       <form onSubmit={ this.handleFormSubmit }>
         <HeaderForm header={ header } handleChange={ this.handleHeaderChange } />
+        <SkillsForm skills={ skills } addSkill={ this.addSkill } removeSkill={ this.removeSkill } />
         <EducationForm educationHistory={ educationHistory } handleChange={ this.handleEducationChange } addEducation={ this.addEducation } removeEducation={ this.removeEducation } />
         <WorkForm workExperience={ workExperience } handleChange={ this.handleWorkChange } handleWorkDetailChange={ this.handleWorkDetailChange } addWorkExperience={ this.addWorkExperience } removeWorkExperience={ this.removeWorkExperience } addWorkDetail={ this.addWorkDetail } removeWorkDetail={ this.removeWorkDetail }/>
         <button type="submit">Save</button>
