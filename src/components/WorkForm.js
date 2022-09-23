@@ -7,121 +7,97 @@ class WorkForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      workExperience: this.props.resumeContent.workExperience,
-    }
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleNestedInputChange = this.handleNestedInputChange.bind(this);
-    this.addJobDescription = this.addJobDescription.bind(this);
-    this.removeJobDescription = this.removeJobDescription.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleWorkDetailChange = this.handleWorkDetailChange.bind(this);
+    this.addWorkExperience = this.addWorkExperience.bind(this);
+    this.removeWorkExperience = this.removeWorkExperience.bind(this);
+    this.addWorkDetail = this.addWorkDetail.bind(this);
+    this.removeWorkDetail = this.removeWorkDetail.bind(this);
   }
 
-  createJobDescriptionBullet() {
+  createJobDescriptionObj() {
     return {
-      text: '',
+      text: 'Job details (e.g., responsibilities, achievements, highlights)',
       id: uniqid(),
     }
   }
 
-  handleInputChange(e) {
-    const workId = e.target.closest('div.workItem').id;
-    const { workExperience } = this.state;
-
-    const targetIndex = workExperience.findIndex((workItem) => (workItem.id === workId));
-    const targetKey = e.target.dataset.objectKey;
-
-    if (targetIndex !== -1) {
-      workExperience[targetIndex][targetKey] = e.target.value;
-      this.setState({
-        workExperience
-      });
+  createWorkExperienceObj() {
+    return {
+      employerName: "Employer Name",
+      location: "Employer Location",
+      startDate: "Start Date",
+      endDate: "End Date",
+      jobTitle: "Job Title",
+      details: [
+        {
+          text: "Job details (e.g., responsibilities, achievements, highlights)",
+          id: uniqid(),
+        }
+      ],
+      id: uniqid(),
     }
   }
 
-  handleNestedInputChange(e) {
-    const workId = e.target.closest('div.workItem').id;
-    const detailId = e.target.closest('div').id;
-    const { workExperience } = this.state;
-
-    const targetIndex = workExperience.findIndex((workItem) => (workItem.id === workId));
-    const targetSubIndex = workExperience[targetIndex]['details'].findIndex((detail) => (detail.id === detailId));
-    
-    if (targetIndex !== -1 && targetSubIndex !== -1) {
-      workExperience[targetIndex]['details'][targetSubIndex].text = e.target.value
-
-      this.setState({
-        workExperience
-      });
-    }
+  handleChange(e) {
+    console.log('hi');
+    this.props.handleChange(e);
   }
 
-  handleSubmit(e) {
+  handleWorkDetailChange(e) {
+    this.props.handleWorkDetailChange(e);
+  }
+
+  addWorkExperience(e) {
     e.preventDefault();
-    this.props.handleSubmit(this.state.workExperience);
+    this.props.addWorkExperience(this.createWorkExperienceObj());
   }
 
-  addJobDescription(e) {
-    const workId = e.target.closest('div.workItem').id;
-    const { workExperience } = this.state;
-
-    const targetIndex = workExperience.findIndex((workItem) => (workItem.id === workId));
-    
-    if (targetIndex !== -1) {
-      workExperience[targetIndex]['details'] = workExperience[targetIndex]['details'].concat(this.createJobDescriptionBullet());
-
-      this.setState({
-        workExperience
-      });
-    }
+  removeWorkExperience(e) {
+    e.preventDefault();
+    this.props.removeWorkExperience(e);
   }
 
-  removeJobDescription(e) {
-    const workId = e.target.closest('div.workItem').id;
-    const detailId = e.target.closest('div').id;
-    const { workExperience } = this.state;
+  addWorkDetail(e) {
+    e.preventDefault();
+    this.props.addWorkDetail(e, this.createJobDescriptionObj());
+  }
 
-    const targetIndex = workExperience.findIndex((workItem) => (workItem.id === workId));
-    const targetSubIndex = workExperience[targetIndex]['details'].findIndex((detail) => (detail.id === detailId));
-    
-    if (targetIndex !== -1 && targetSubIndex !== -1) {
-      workExperience[targetIndex]['details'].splice([targetSubIndex], 1);
-
-      this.setState({
-        workExperience
-      });
-    }
+  removeWorkDetail(e) {
+    e.preventDefault();
+    this.props.removeWorkDetail(e);
   }
 
   render() {
     return (
-      <form className="Form" onSubmit={this.handleSubmit}>
-        { this.state.workExperience.map((workItem) => {
-          return(
-            <div key={ workItem.id } id={ workItem.id } className="workItem">
-              <InputFormField value={workItem.employerName} label="Employer Name" id={`employer-${workItem.id}`} objectKey="employerName" handleInputChange={this.handleInputChange} />
-              <InputFormField value={workItem.location} label="Location" id={`location-${workItem.id}`} objectKey="location" handleInputChange={this.handleInputChange} />
-              <InputFormField value={workItem.startDate} label="Start Date" id={`start-${workItem.id}`} objectKey="startDate" handleInputChange={this.handleInputChange} />
-              <InputFormField value={workItem.endDate} label="End Date" id={`end-${workItem.id}`} objectKey="endDate" handleInputChange={this.handleInputChange} />
+      <div>
+        { this.props.workExperience.map((workItem, index) => {
+            return(
+              <div key={ workItem.id } data-work-index={ index }>
+                <InputFormField value={workItem.employerName} label="Employer Name" id={`employer-${workItem.id}`} objectKey="employerName" handleInputChange={this.handleChange} />
+                <InputFormField value={workItem.location} label="Location" id={`location-${workItem.id}`} objectKey="location" handleInputChange={this.handleChange} />
+                <InputFormField value={workItem.startDate} label="Start Date" id={`start-${workItem.id}`} objectKey="startDate" handleInputChange={this.handleChange} />
+                <InputFormField value={workItem.endDate} label="End Date" id={`end-${workItem.id}`} objectKey="endDate" handleInputChange={this.handleChange} />
 
-              <label htmlFor={`details-${workItem.id}`}>Job Description</label>
-              { workItem.details.map((detail) => {
-                    return (
-                      <div key={ detail.id } id={ detail.id }>
-                        <input type="text" value={ detail.text } id={`details-${workItem.id}`} onChange={this.handleNestedInputChange}></input>
-                        <button onClick={this.removeJobDescription}>Remove Job Description</button>
-                      </div>
-                    );
-                  }  
-                )
-              }
-              <button onClick={this.addJobDescription}>Add Job Description</button>
-            </div>
-          );
-        })}
-        <button type="submit">Save</button>
-      </form>
+                <label htmlFor={`details-${workItem.id}`}>Job Description</label>
+                { workItem.details.map((detail, detail_index) => {
+                      return (
+                        <div key={ detail.id } data-work-detail-index={ detail_index }>
+                          <input type="text" value={ detail.text } id={`details-${workItem.id}`} data-object-key="details" onChange={this.handleWorkDetailChange}></input>
+                          <button onClick={ this.removeWorkDetail } data-object-key="details">Remove Job Description</button>
+                        </div>
+                      );
+                    }  
+                  )
+                }
+                <button onClick={ this.addWorkDetail }>Add Job Description</button>
+                <button onClick={ this.removeWorkExperience }>Remove Work Experience</button>
+              </div>
+            );
+          })
+        }
+        <button onClick={ this.addWorkExperience }>Add Work Experience</button>
+      </div>
     );
   }
 }
