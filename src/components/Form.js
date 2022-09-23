@@ -74,7 +74,6 @@ class Form extends Component {
     const { workExperience } = this.state;
 
     if (targetIndex) {
-      console.log('hi');
       workExperience[targetIndex][targetKey] = e.target.value;
       this.setState({
         workExperience

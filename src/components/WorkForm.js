@@ -40,7 +40,6 @@ class WorkForm extends Component {
   }
 
   handleChange(e) {
-    console.log('hi');
     this.props.handleChange(e);
   }
 
