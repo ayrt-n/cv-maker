@@ -14,16 +14,14 @@ class Form extends Component {
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleHeaderChange = this.handleHeaderChange.bind(this);
-    this.addSkill = this.addSkill.bind(this);
     this.removeSkill = this.removeSkill.bind(this);
-    this.addEducation = this.addEducation.bind(this);
     this.removeEducation = this.removeEducation.bind(this);
     this.handleWorkDetailChange = this.handleWorkDetailChange.bind(this);
-    this.addWorkExperience = this.addWorkExperience.bind(this);
     this.removeWorkExperience = this.removeWorkExperience.bind(this);
     this.addWorkDetail = this.addWorkDetail.bind(this);
     this.removeWorkDetail = this.removeWorkDetail.bind(this);
     this.handleResumeSectionChange = this.handleResumeSectionChange.bind(this);
+    this.addResumeSectionElement = this.addResumeSectionElement.bind(this);
   }
 
   handleResumeSectionChange(e) {
@@ -36,6 +34,14 @@ class Form extends Component {
       resumeSection[targetIndex] = { ...resumeSection[targetIndex], [targetKey]: e.target.value };
       return ({ [targetSection]: resumeSection })
     })
+  }
+
+  addResumeSectionElement(e, obj) {
+    const targetSection = e.target.closest('[data-section]').dataset.section;
+  
+    this.setState({
+      [targetSection]: this.state[targetSection].concat(obj)
+    });
   }
 
   handleFormSubmit(e) {
@@ -175,10 +181,10 @@ class Form extends Component {
     return (
       <form onSubmit={ this.handleFormSubmit }>
         <HeaderForm header={ header } handleChange={ this.handleHeaderChange } />
-        <SkillsForm skills={ skills } addSkill={ this.addSkill } removeSkill={ this.removeSkill } />
-        <EducationForm educationHistory={ educationHistory } handleChange={ this.handleResumeSectionChange } addEducation={ this.addEducation } removeEducation={ this.removeEducation } />
-        <WorkForm workExperience={ workExperience } handleChange={ this.handleResumeSectionChange } handleWorkDetailChange={ this.handleWorkDetailChange } addWorkExperience={ this.addWorkExperience } removeWorkExperience={ this.removeWorkExperience } addWorkDetail={ this.addWorkDetail } removeWorkDetail={ this.removeWorkDetail }/>
-        <ProjectForm projects={ projects } handleChange={ this.handleResumeSectionChange }/>
+        <SkillsForm skills={ skills } addSkill={ this.addResumeSectionElement } removeSkill={ this.removeSkill } />
+        <EducationForm educationHistory={ educationHistory } handleChange={ this.handleResumeSectionChange } addEducation={ this.addResumeSectionElement } removeEducation={ this.removeEducation } />
+        <WorkForm workExperience={ workExperience } handleChange={ this.handleResumeSectionChange } handleWorkDetailChange={ this.handleWorkDetailChange } addWorkExperience={ this.addResumeSectionElement } removeWorkExperience={ this.removeWorkExperience } addWorkDetail={ this.addWorkDetail } removeWorkDetail={ this.removeWorkDetail }/>
+        <ProjectForm projects={ projects } handleChange={ this.handleResumeSectionChange } addProject={ this.addResumeSectionElement } />
         <button type="submit">Save</button>
       </form>
     );
