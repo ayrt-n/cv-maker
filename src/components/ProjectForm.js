@@ -86,7 +86,7 @@ class ProjectForm extends Component {
                     }
                   )
                 }
-                <button onClick={ this.addProjectDetail }>Add Project Detail</button>
+                <button onClick={ this.addProjectDetail } data-object-key="details">Add Project Detail</button>
                 <button onClick={ this.removeProject }>Remove Project</button>
               </div>
             );

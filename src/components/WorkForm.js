@@ -89,7 +89,7 @@ class WorkForm extends Component {
                     }
                   )
                 }
-                <button onClick={ this.addWorkDetail }>Add Job Description</button>
+                <button onClick={ this.addWorkDetail } data-object-key="details">Add Job Description</button>
                 <button onClick={ this.removeWorkExperience }>Remove Work Experience</button>
               </div>
             );
