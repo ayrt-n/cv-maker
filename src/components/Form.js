@@ -4,6 +4,7 @@ import SkillsForm from "./SkillsForm";
 import EducationForm from "./EducationForm";
 import WorkForm from "./WorkForm";
 import ProjectForm from "./ProjectForm";
+import uniqid from 'uniqid';
 import '../styles/Form.css';
 
 class Form extends Component {
@@ -14,10 +15,10 @@ class Form extends Component {
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleHeaderChange = this.handleHeaderChange.bind(this);
-    this.handleWorkDetailChange = this.handleWorkDetailChange.bind(this);
     this.addWorkDetail = this.addWorkDetail.bind(this);
     this.removeWorkDetail = this.removeWorkDetail.bind(this);
     this.handleResumeSectionChange = this.handleResumeSectionChange.bind(this);
+    this.handledNestedResumeChange = this.handledNestedResumeChange.bind(this);
     this.addResumeSectionElement = this.addResumeSectionElement.bind(this);
     this.removeResumeSectionElement = this.removeResumeSectionElement.bind(this);
   }
@@ -30,6 +31,23 @@ class Form extends Component {
     this.setState(prevState => {
       const resumeSection = [...prevState[targetSection]];
       resumeSection[targetIndex] = { ...resumeSection[targetIndex], [targetKey]: e.target.value };
+      return ({ [targetSection]: resumeSection })
+    })
+  }
+
+  handledNestedResumeChange(e) {
+    const targetSection = e.target.closest('[data-section]').dataset.section;
+    const targetIndex  = e.target.closest('[data-section-index]').dataset.sectionIndex;
+    const targetKey = e.target.dataset.objectKey;
+    const targetNestedIndex = e.target.closest('[data-nested-index]').dataset.nestedIndex;
+    const targetNestedKey = e.target.dataset.nestedObjectKey;
+  
+    this.setState(prevState => {
+      const resumeSection = [...prevState[targetSection]];
+      const resumeNestedSection = [...resumeSection[targetIndex][targetKey]]
+      resumeNestedSection[targetNestedIndex] = { ...resumeNestedSection[targetNestedIndex], [targetNestedKey]: e.target.value }
+      resumeSection[targetIndex] = { ...resumeSection[targetIndex], [targetKey]: resumeNestedSection };
+
       return ({ [targetSection]: resumeSection })
     })
   }
@@ -67,18 +85,6 @@ class Form extends Component {
     })
   }
 
-  handleWorkDetailChange(e) {
-    const targetIndex  = e.target.closest('[data-work-index]').dataset.workIndex;
-    const targetDetailIndex = e.target.closest('[data-work-detail-index]').dataset.workDetailIndex;
-    const targetKey = e.target.dataset.objectKey;
-    const { workExperience } = this.state;
-
-    if (targetIndex && targetDetailIndex) {
-      workExperience[targetIndex][targetKey][targetDetailIndex].text = e.target.value;
-      this.setState({ workExperience });
-    }
-  }
-
   addWorkDetail(e, emptyWorkDetailObj) {
     const targetIndex  = e.target.closest('[data-work-index]').dataset.workIndex;
     const { workExperience } = this.state;
@@ -112,8 +118,8 @@ class Form extends Component {
         <HeaderForm header={ header } handleChange={ this.handleHeaderChange } />
         <SkillsForm skills={ skills } addSkill={ this.addResumeSectionElement } removeSkill={ this.removeResumeSectionElement } />
         <EducationForm educationHistory={ educationHistory } handleChange={ this.handleResumeSectionChange } addEducation={ this.addResumeSectionElement } removeEducation={ this.removeResumeSectionElement } />
-        <WorkForm workExperience={ workExperience } handleChange={ this.handleResumeSectionChange } handleWorkDetailChange={ this.handleWorkDetailChange } addWorkExperience={ this.addResumeSectionElement } removeWorkExperience={ this.removeResumeSectionElement } addWorkDetail={ this.addWorkDetail } removeWorkDetail={ this.removeWorkDetail }/>
-        <ProjectForm projects={ projects } handleChange={ this.handleResumeSectionChange } addProject={ this.addResumeSectionElement } removeProject={ this.removeResumeSectionElement } />
+        <WorkForm workExperience={ workExperience } handleChange={ this.handleResumeSectionChange } handleWorkDetailChange={ this.handledNestedResumeChange } addWorkExperience={ this.addResumeSectionElement } removeWorkExperience={ this.removeResumeSectionElement } addWorkDetail={ this.addWorkDetail } removeWorkDetail={ this.removeWorkDetail }/>
+        <ProjectForm projects={ projects } handleChange={ this.handleResumeSectionChange } addProject={ this.addResumeSectionElement } removeProject={ this.removeResumeSectionElement } handleProjectDetailChange={ this.handledNestedResumeChange } />
         <button type="submit">Save</button>
       </form>
     );

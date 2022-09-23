@@ -81,8 +81,8 @@ class WorkForm extends Component {
                 <label htmlFor={`details-${workItem.id}`}>Job Description</label>
                 { workItem.details.map((detail, detail_index) => {
                       return (
-                        <div key={ detail.id } data-work-detail-index={ detail_index }>
-                          <input type="text" value={ detail.text } id={`details-${workItem.id}`} data-object-key="details" onChange={this.handleWorkDetailChange}></input>
+                        <div key={ detail.id } data-nested-index={ detail_index }>
+                          <input type="text" value={ detail.text } id={`details-${workItem.id}`} data-object-key="details" data-nested-object-key="text" onChange={this.handleWorkDetailChange}></input>
                           <button onClick={ this.removeWorkDetail } data-object-key="details">Remove Job Description</button>
                         </div>
                       );

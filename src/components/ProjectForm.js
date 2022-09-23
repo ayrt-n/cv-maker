@@ -78,8 +78,8 @@ class ProjectForm extends Component {
                 <label htmlFor={`details-${project.id}`}>Project Description</label>
                 { project.details.map((detail, detail_index) => {
                       return (
-                        <div key={ detail.id } data-project-detail-index={ detail_index }>
-                          <input type="text" value={ detail.text } id={`details-${project.id}`} data-object-key="details" onChange={this.handleWorkDetailChange}></input>
+                        <div key={ detail.id } data-nested-index={ detail_index }>
+                          <input type="text" value={ detail.text } id={`details-${project.id}`} data-object-key="details" data-nested-object-key="text" onChange={ this.handleProjectDetailChange }></input>
                           <button onClick={ this.removeProjectDetail } data-object-key="details">Remove Project Detail</button>
                         </div>
                       );
