@@ -16,9 +16,11 @@ class InputFormField extends Component {
     const { label, id, objectKey, nestedObjectKey, value } = this.props
 
     return (
-      <div>
-        <label htmlFor={ id }>{ label }</label>
-        <input type="text" value={ value } id={ `${id}` } data-object-key={ objectKey } data-nested-object-key={ nestedObjectKey } onChange={ this.handleInputChange }></input>
+      <div className="field">
+        <label htmlFor={ id } className="label">{ label }</label>
+        <div className="control">
+          <input type="text" value={ value } id={ `${id}` } data-object-key={ objectKey } data-nested-object-key={ nestedObjectKey } onChange={ this.handleInputChange } className="input"></input>
+        </div>
       </div>
     );
   }

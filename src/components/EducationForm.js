@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import InputFormField from "./InputFormField";
+import LineButton from "./LineButton";
+import FormSectionSubHeader from "./FormSectionSubHeader";
 import '../styles/Form.css';
 import uniqid from 'uniqid';
 
@@ -39,22 +41,23 @@ class EducationForm extends Component {
 
   render() {
     return (
-      <div data-section="educationHistory">
+      <div className="Form-section" data-section="educationHistory">
+        <h1 className="Form-section-header">Education History</h1>
         { this.props.educationHistory.map((educationItem, index) => {
             return (
-              <div key={ educationItem.id } data-section-index={ index }>
+              <div key={ educationItem.id } data-section-index={ index } className="Form-sub-section">
+                <FormSectionSubHeader section="Education" index={ index } handleClick={ this.removeEducation } />
+
                 <InputFormField value={ educationItem.school } label="School Name" id={ `school-${educationItem.id}` } objectKey="school" handleInputChange={ this.handleChange } />
                 <InputFormField value={ educationItem.program } label="Program" id={ `program-${educationItem.id}` } objectKey="program" handleInputChange={ this.handleChange } />
                 <InputFormField value={ educationItem.startDate } label="Start Date" id={ `start-${educationItem.id}` } objectKey="startDate" handleInputChange={ this.handleChange } />
                 <InputFormField value={ educationItem.endDate } label="End Date" id={ `end-${educationItem.id}` } objectKey="endDate" handleInputChange={ this.handleChange } />
                 <InputFormField value={ educationItem.location } label="Location" id={ `location-${educationItem.id}` } objectKey="location" handleInputChange={ this.handleChange } />
-
-                <button onClick={this.removeEducation}>Delete</button>
               </div>
             );
           })
         }
-        <button onClick={this.addEducation}>Add Education</button>
+        <LineButton handleClick={ this.addEducation } text="Add Education Item" />
       </div>
     );
   }

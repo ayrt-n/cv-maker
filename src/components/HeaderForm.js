@@ -17,7 +17,8 @@ class HeaderForm extends Component {
     const { name, location, phone, email } = { ...this.props.header }
 
     return (
-      <div>
+      <div className="Form-section">
+        <h1 className="Form-section-header">Personal Details</h1>
         <InputFormField value={ name } label="Full Name" id="name" handleInputChange={ this.handleChange } />
         <InputFormField value={ location } label="Location" id="location" handleInputChange={ this.handleChange } />
         <InputFormField value={ phone } label="Phone Number" id="phone" handleInputChange={ this.handleChange } />

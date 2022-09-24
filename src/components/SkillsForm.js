@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import InputFormField from "./InputFormField";
+import InputFormFieldAddOn from "./InputFormFieldAddOn";
+import SkillFormBubble from "./SkillFormBubble";
 import uniqid from 'uniqid';
 import '../styles/Form.css';
 
@@ -44,17 +45,14 @@ class SkillsForm extends Component {
 
   render() {
     return (
-      <div data-section="skills">
-        <InputFormField value={ this.state.skill.text } label="Skills"  id="skills" objectKey="skills" handleInputChange={ this.handleChange } />
-        <button onClick={ this.addSkill } value={ this.state.skill.text }>Add Skill</button>
-        <div className="Skills-container">
+      <div className="Form-section" data-section="skills">
+        <h1 className="Form-section-header">Skills</h1>
+        <InputFormFieldAddOn value={ this.state.skill.text } label="Skills"  id="skills" objectKey="skills" handleInputChange={ this.handleChange } buttonText="Add Skill" handleClick={ this.addSkill } />
+        <div className="Skills-Form-preview">
           { this.props.skills.map((skill, index) => {
               return (
                 <div key={ skill.id } data-section-index={ index }>
-                  <div className="Skills-bubble">
-                    { skill.text }
-                  </div>
-                  <button onClick={ this.removeSkill }>-</button>
+                  <SkillFormBubble skill={ skill.text } handleClick={ this.removeSkill } />
                 </div>
               );
             })

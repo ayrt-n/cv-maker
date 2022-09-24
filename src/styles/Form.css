@@ -1,3 +1,365 @@
 .Form {
   margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fafafa;
+  padding: 2rem;
+  border-radius: 3px;
+  box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+}
+
+.Form-section-header {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.Form-section-sub-header-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.Form-section-sub-header {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.Form-section:not(:last-child),
+.Form-sub-section {
+  margin-bottom: 1rem;
+}
+
+.Form-section:not(:last-child) {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--black-200);
+}
+
+.Form-line-button {
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+}
+
+.plus {
+  margin-right: 1rem;
+  color: var(--seconary-600);
+  padding: 0.25rem;
+  border-radius: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.Form-line-button:hover .plus {
+  background-color: var(--seconary-600);
+  color: var(--black-50);
+}
+
+.Form-line-button:hover {
+  font-weight: 600;
+}
+
+.small-icon {
+  margin-left: 1rem;
+  width: 1rem;
+  height: auto;
+  cursor: pointer;
+}
+
+.small-icon:hover {
+  transform: scale(125%);
+}
+
+.Skill-Form-bubble {
+  display: flex;
+  color: #fafafa;
+  background-color: var(--primary-600);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+}
+
+.Skill-Form-bubble-container {
+  display: flex;
+  margin-right: 1rem;
+  margin-top: 0.75rem;
+  min-height: 32px;
+}
+
+.Skills-Form-preview {
+  margin-top: -0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Skill-Form-icon {
+  margin-left: 0.25rem;
+  width: 1rem;
+  height: auto;
+  cursor: pointer;
+}
+
+
+/* Bulma Form Styling from https://github.com/jgthms/bulma/blob/master/css/bulma.css  */
+input, textarea, select {
+  box-sizing: border-box;
+}
+
+.label:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+.label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.field {
+  margin-bottom: 0.75rem;
+}
+
+.field-label .label {
+  font-size: inherit;
+}
+
+.field.is-grouped {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.field.is-grouped > .control {
+  flex-shrink: 0;
+}
+
+.field.is-grouped > .control:not(:last-child) {
+  margin-bottom: 0;
+  margin-right: 0.75rem;
+}
+
+.control {
+  box-sizing: border-box;
+  clear: both;
+  font-size: 1rem;
+  position: relative;
+  text-align: inherit;
+}
+
+.button {
+  color: var(--black-50);
+  background-color: var(--primary-600);
+}
+
+.button:hover {
+  background-color: var(--primary-500);
+}
+
+.button:active, .button:focus {
+  background-color: var(--primary-700);
+}
+
+.button.danger {
+  background-color: #dc2626;
+}
+
+.button.danger:hover {
+  background-color: #ef4444;
+}
+
+.button.danger:active, .button.danger:focus {
+  background-color: #b91c1c;
+}
+
+.button.small {
+  height: 1.5em;
+}
+
+.button.light {
+  color: var(--black-900);
+  background-color: var(--black-200);
+}
+
+.button.light:hover {
+  background-color: var(--black-100);
+}
+
+.button.light:active, .button.light:focus {
+  background-color: var(--black-300);
+}
+
+.button, .input, .textarea, .select select, .date input[type="date"] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.5em;
+  justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: calc(0.75em - 1px);
+  padding-right: calc(0.75em - 1px);
+  padding-top: calc(0.5em - 1px);
+  position: relative;
+  vertical-align: top;
+}
+
+.button:focus, .input:focus, .textarea:focus, .select select:focus, .date input[type="date"]:focus,
+.button:active, .input:active, .textarea:active, .select select:active, .date input[type="date"]:active {
+  outline: none;
+}
+
+.button {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.select:not(.is-multiple):not(.is-loading)::after {
+  border: 3px solid transparent;
+  border-radius: 2px;
+  border-right: 0;
+  border-top: 0;
+  content: " ";
+  display: block;
+  height: 0.625em;
+  margin-top: -0.4375em;
+  pointer-events: none;
+  position: absolute;
+  top: 45%;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  width: 0.625em;
+}
+
+.input, .textarea, .select select, .date input[type="date"] {
+  background-color: white;
+  border-color: #dbdbdb;
+  border-radius: 4px;
+  color: #363636;
+}
+
+.input::-moz-placeholder, .textarea::-moz-placeholder, .select select::-moz-placeholder, .date input[type="date"]::-moz-placeholder {
+  color: rgba(54, 54, 54, 0.3);
+}
+
+.input::-webkit-input-placeholder, .textarea::-webkit-input-placeholder, .select select::-webkit-input-placeholder, .date input[type="date"]::-webkit-input-placeholder {
+  color: rgba(54, 54, 54, 0.3);
+}
+
+.input:hover, .textarea:hover, .select select:hover, .date input[type="date"]:hover {
+  border-color: #b5b5b5;
+}
+
+.input:focus, .textarea:focus, .select select:focus, .date input[type="date"]:focus {
+  border-color: #485fc7;
+  box-shadow: 0 0 0 0.125em rgba(72, 95, 199, 0.25);
+}
+
+.input, .textarea {
+  box-shadow: inset 0 0.0625em 0.125em rgba(10, 10, 10, 0.05);
+  max-width: 100%;
+  width: 100%;
+}
+
+.textarea {
+  display: block;
+  max-width: 100%;
+  min-width: 100%;
+  padding: calc(0.75em - 1px);
+  resize: vertical;
+  font: inherit;
+}
+
+.textarea:not([rows]) {
+  max-height: 40em;
+  min-height: 8em;
+}
+
+.textarea[rows] {
+  height: initial;
+}
+
+.select, .date {
+  display: inline-block;
+  max-width: 100%;
+  position: relative;
+  vertical-align: top;
+}
+
+.select:not(.is-multiple), .date {
+  height: 2.5em;
+}
+
+.select:not(.is-multiple):not(.is-loading)::after {
+  border-color: #485fc7;
+  right: 1.125em;
+  z-index: 4;
+}
+
+.select select, .date input[type="date"] {
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  max-width: 100%;
+  outline: none;
+}
+
+.select select::-ms-expand {
+  display: none;
+}
+
+.select select:not([multiple]) {
+  padding-right: 2.5em;
+}
+
+.select select[multiple] {
+  height: auto;
+  padding: 0;
+}
+
+.select:not(.is-multiple):not(.is-loading):hover::after {
+  border-color: #363636;
+}
+
+.date input[type="date"] {
+  font: inherit;
+}
+
+.field.has-addons,
+.field.has-side-icon {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.field.has-addons .control.is-expanded,
+.field.has-side-icon .control.is-expanded {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.field.has-addons .control:not(:last-child) {
+  margin-right: -1px;
+}
+
+.field.has-addons .control:first-child:not(:only-child) .button,
+.field.has-addons .control:first-child:not(:only-child) .input,
+.field.has-addons .control:first-child:not(:only-child) .select select {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.field.has-addons .control:last-child:not(:only-child) .button,
+.field.has-addons .control:last-child:not(:only-child) .input,
+.field.has-addons .control:last-child:not(:only-child) .select select {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }

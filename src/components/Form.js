@@ -40,6 +40,8 @@ class Form extends Component {
     const targetKey = e.target.dataset.objectKey;
     const targetNestedIndex = e.target.closest('[data-nested-index]').dataset.nestedIndex;
     const targetNestedKey = e.target.dataset.nestedObjectKey;
+
+    console.log(targetSection, targetIndex, targetKey, targetNestedIndex, targetNestedKey)
   
     this.setState(prevState => {
       const resumeSection = [...prevState[targetSection]];
@@ -122,13 +124,13 @@ class Form extends Component {
     const { header, skills, educationHistory, workExperience, projects } = this.state;
 
     return (
-      <form onSubmit={ this.handleFormSubmit }>
+      <form onSubmit={ this.handleFormSubmit } className="Form">
         <HeaderForm header={ header } handleChange={ this.handleHeaderChange } />
         <SkillsForm skills={ skills } addSkill={ this.addResumeSectionElement } removeSkill={ this.removeResumeSectionElement } />
         <EducationForm educationHistory={ educationHistory } handleChange={ this.handleResumeSectionChange } addEducation={ this.addResumeSectionElement } removeEducation={ this.removeResumeSectionElement } />
         <WorkForm workExperience={ workExperience } handleChange={ this.handleResumeSectionChange } handleWorkDetailChange={ this.handledNestedResumeChange } addWorkExperience={ this.addResumeSectionElement } removeWorkExperience={ this.removeResumeSectionElement } addWorkDetail={ this.addNestedResumeElement } removeWorkDetail={ this.removeNestedResumeElement }/>
         <ProjectForm projects={ projects } handleChange={ this.handleResumeSectionChange } addProject={ this.addResumeSectionElement } removeProject={ this.removeResumeSectionElement } handleProjectDetailChange={ this.handledNestedResumeChange } addProjectDetail={ this.addNestedResumeElement } removeProjectDetail={ this.removeNestedResumeElement } />
-        <button type="submit">Save</button>
+        <button type="submit" className="button">Save</button>
       </form>
     );
   }

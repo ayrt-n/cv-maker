@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import InputFormField from "./InputFormField";
+import NestedInputFormField from "./NestedInputFormField";
+import FormSectionSubHeader from "./FormSectionSubHeader";
+import LineButton from "./LineButton";
 import '../styles/Form.css';
 import uniqid from 'uniqid';
 
@@ -67,32 +70,33 @@ class ProjectForm extends Component {
 
   render() {
     return (
-      <div data-section="projects">
+      <div className="Form-section" data-section="projects">
+        <h1 className="Form-section-header">Projects</h1>
         { this.props.projects.map((project, index) => {
             return(
-              <div key={ project.id } data-section-index={ index }>
+              <div key={ project.id } data-section-index={ index } className="Form-sub-section">
+                <FormSectionSubHeader section="Project" index={ index } handleClick={ this.removeProject } />
+
                 <InputFormField value={project.name} label="Project Name" id={`name-${project.id}`} objectKey="name" handleInputChange={this.handleChange} />
                 <InputFormField value={project.startDate} label="Start Date" id={`start-${project.id}`} objectKey="startDate" handleInputChange={this.handleChange} />
                 <InputFormField value={project.endDate} label="End Date" id={`end-${project.id}`} objectKey="endDate" handleInputChange={this.handleChange} />
 
-                <label htmlFor={`details-${project.id}`}>Project Description</label>
+                <label htmlFor={`details-${project.id}`} className="label">Project Description</label>
                 { project.details.map((detail, detail_index) => {
                       return (
                         <div key={ detail.id } data-nested-index={ detail_index }>
-                          <input type="text" value={ detail.text } id={`details-${project.id}`} data-object-key="details" data-nested-object-key="text" onChange={ this.handleProjectDetailChange }></input>
-                          <button onClick={ this.removeProjectDetail } data-object-key="details">Remove Project Detail</button>
+                          <NestedInputFormField value={ detail.text } id={`details-${project.id}`} objectKey="details" nestedObjectKey="text" handleInputChange={ this.handleProjectDetailChange } handleClick={ this.removeProjectDetail } />
                         </div>
                       );
                     }
                   )
                 }
-                <button onClick={ this.addProjectDetail } data-object-key="details">Add Project Detail</button>
-                <button onClick={ this.removeProject }>Remove Project</button>
+                <button onClick={ this.addProjectDetail } data-object-key="details" className="button small light">Add Project Detail</button>
               </div>
             );
           })
         }
-        <button onClick={ this.addProject }>Add Project</button>
+        <LineButton handleClick={ this.addProject } text="Add Project" />
       </div>
     );
   }

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import InputFormField from "./InputFormField";
+import NestedInputFormField from "./NestedInputFormField";
+import FormSectionSubHeader from "./FormSectionSubHeader";
+import LineButton from "./LineButton";
 import '../styles/Form.css';
 import uniqid from 'uniqid';
 
@@ -69,33 +72,34 @@ class WorkForm extends Component {
 
   render() {
     return (
-      <div data-section="workExperience">
+      <div className="Form-section" data-section="workExperience">
+        <h1 className="Form-section-header">Work Experience</h1>
         { this.props.workExperience.map((workItem, index) => {
             return(
-              <div key={ workItem.id } data-section-index={ index }>
+              <div key={ workItem.id } data-section-index={ index } className="Form-sub-section">
+                <FormSectionSubHeader section="Work Experience" index={ index } handleClick={ this.removeWorkExperience } />
+
                 <InputFormField value={workItem.employerName} label="Employer Name" id={`employer-${workItem.id}`} objectKey="employerName" handleInputChange={this.handleChange} />
                 <InputFormField value={workItem.location} label="Location" id={`location-${workItem.id}`} objectKey="location" handleInputChange={this.handleChange} />
                 <InputFormField value={workItem.startDate} label="Start Date" id={`start-${workItem.id}`} objectKey="startDate" handleInputChange={this.handleChange} />
                 <InputFormField value={workItem.endDate} label="End Date" id={`end-${workItem.id}`} objectKey="endDate" handleInputChange={this.handleChange} />
 
-                <label htmlFor={`details-${workItem.id}`}>Job Description</label>
+                <label htmlFor={`details-${workItem.id}`} className="label">Job Description</label>
                 { workItem.details.map((detail, detail_index) => {
                       return (
                         <div key={ detail.id } data-nested-index={ detail_index }>
-                          <input type="text" value={ detail.text } id={`details-${workItem.id}`} data-object-key="details" data-nested-object-key="text" onChange={this.handleWorkDetailChange}></input>
-                          <button onClick={ this.removeWorkDetail } data-object-key="details">Remove Job Description</button>
+                          <NestedInputFormField value={ detail.text } id={`details-${workItem.id}`} objectKey="details" nestedObjectKey="text" handleInputChange={this.handleWorkDetailChange} handleClick={ this.removeWorkDetail } />
                         </div>
                       );
                     }
                   )
                 }
-                <button onClick={ this.addWorkDetail } data-object-key="details">Add Job Description</button>
-                <button onClick={ this.removeWorkExperience }>Remove Work Experience</button>
+                <button onClick={ this.addWorkDetail } data-object-key="details" className="button small light">Add Job Description</button>
               </div>
             );
           })
         }
-        <button onClick={ this.addWorkExperience }>Add Work Experience</button>
+        <LineButton handleClick={ this.addWorkExperience } text="Add Work Experience" />
       </div>
     );
   }
