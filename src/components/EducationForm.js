@@ -20,11 +20,11 @@ class EducationForm extends Component {
 
   createNewEducationObj() {
     return {
-      school: "School Name",
-      program: "Program",
-      location: "School Location",
-      startDate: "Start Date",
-      endDate: "End Date",
+      school: "",
+      program: "",
+      location: "",
+      startDate: "",
+      endDate: "",
       id: uniqid(),
     }
   }

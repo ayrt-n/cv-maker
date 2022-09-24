@@ -13,7 +13,7 @@ class LineButton extends Component {
 
   render() {
     return (
-      <div className="Form-line-button" onClick={ this.handleClick }>
+      <div className="Form-line-button" onClick={ this.handleClick } data-object-key={ this.props.objectKey }>
         <div className="plus">+</div>
         { this.props.text }
       </div>

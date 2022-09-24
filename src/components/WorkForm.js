@@ -20,21 +20,21 @@ class WorkForm extends Component {
 
   createJobDescriptionObj() {
     return {
-      text: 'Job details (e.g., responsibilities, achievements, highlights)',
+      text: '',
       id: uniqid(),
     }
   }
 
   createWorkExperienceObj() {
     return {
-      employerName: "Employer Name",
-      location: "Employer Location",
-      startDate: "Start Date",
-      endDate: "End Date",
-      jobTitle: "Job Title",
+      employerName: "",
+      location: "",
+      startDate: "",
+      endDate: "",
+      jobTitle: "",
       details: [
         {
-          text: "Job details (e.g., responsibilities, achievements, highlights)",
+          text: "",
           id: uniqid(),
         }
       ],
@@ -94,7 +94,7 @@ class WorkForm extends Component {
                     }
                   )
                 }
-                <button onClick={ this.addWorkDetail } data-object-key="details" className="button small light">Add Job Description</button>
+                <LineButton handleClick={ this.addWorkDetail } objectKey="details" text="Add Job Description"/>
               </div>
             );
           })

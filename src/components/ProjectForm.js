@@ -20,19 +20,19 @@ class ProjectForm extends Component {
 
   createProjectDescriptionObj() {
     return {
-      text: 'Project details (e.g., summary, achievements, lessons learned)',
+      text: '',
       id: uniqid(),
     }
   }
 
   createProjectObj() {
     return {
-      name: "Project Name",
-      startDate: "Start Date",
-      endDate: "End Date",
+      name: "",
+      startDate: "",
+      endDate: "",
       details: [
         {
-          text: "Project details (e.g., summary, achievements, lessons learned)",
+          text: "",
           id: uniqid(),
         }
       ],
@@ -91,7 +91,7 @@ class ProjectForm extends Component {
                     }
                   )
                 }
-                <button onClick={ this.addProjectDetail } data-object-key="details" className="button small light">Add Project Detail</button>
+                <LineButton handleClick={ this.addProjectDetail } objectKey="details" text="Add Project Description"/>
               </div>
             );
           })
