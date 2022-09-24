@@ -57,7 +57,7 @@ class EducationForm extends Component {
             );
           })
         }
-        <LineButton handleClick={ this.addEducation } text="Add Education Item" />
+        <LineButton handleClick={ this.addEducation } text="Add Education" />
       </div>
     );
   }
