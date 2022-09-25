@@ -45,9 +45,7 @@ class App extends Component {
       return (
       <div className="App">
         <h1 className="App-header">CV Maker</h1>
-        <div className="App-content-container">
-          { activeComponent }
-        </div>
+        { activeComponent }
       </div>
     );
   }
