@@ -13,3 +13,7 @@
   padding: 2.15rem 2rem;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
+
+.Resume-edit.button {
+  position: absolute;
+}
