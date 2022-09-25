@@ -20,6 +20,8 @@ class Form extends Component {
     this.removeResumeSectionElement = this.removeResumeSectionElement.bind(this);
     this.addNestedResumeElement = this.addNestedResumeElement.bind(this);
     this.removeNestedResumeElement = this.removeNestedResumeElement.bind(this);
+
+    this.cancelEdit = this.cancelEdit.bind(this);
   }
 
   handleResumeSectionChange(e) {
@@ -120,8 +122,31 @@ class Form extends Component {
     })
   }
 
+  cancelEdit(e) {
+    e.preventDefault();
+    this.props.cancelEdit();
+  }
+
+  returnButtons() {
+    if (this.props.edit) {
+      return(
+          <div className="control grouped-buttons">
+            <button type="submit" className="button">Save Changes</button>
+            <button className="button light" onClick={ this.cancelEdit }>Cancel</button>
+          </div>
+      );
+    } else {
+      return(
+        <div className="control">
+          <button type="submit" className="button">Create Resume</button>
+        </div>
+      );
+    }
+  }
+
   render() {
     const { header, skills, educationHistory, workExperience, projects } = this.state;
+    const buttons = this.returnButtons();
 
     return (
       <form onSubmit={ this.handleFormSubmit } className="Form">
@@ -130,7 +155,7 @@ class Form extends Component {
         <EducationForm educationHistory={ educationHistory } handleChange={ this.handleResumeSectionChange } addEducation={ this.addResumeSectionElement } removeEducation={ this.removeResumeSectionElement } />
         <WorkForm workExperience={ workExperience } handleChange={ this.handleResumeSectionChange } handleWorkDetailChange={ this.handledNestedResumeChange } addWorkExperience={ this.addResumeSectionElement } removeWorkExperience={ this.removeResumeSectionElement } addWorkDetail={ this.addNestedResumeElement } removeWorkDetail={ this.removeNestedResumeElement }/>
         <ProjectForm projects={ projects } handleChange={ this.handleResumeSectionChange } addProject={ this.addResumeSectionElement } removeProject={ this.removeResumeSectionElement } handleProjectDetailChange={ this.handledNestedResumeChange } addProjectDetail={ this.addNestedResumeElement } removeProjectDetail={ this.removeNestedResumeElement } />
-        <button type="submit" className="button">Save</button>
+        { buttons }
       </form>
     );
   }
