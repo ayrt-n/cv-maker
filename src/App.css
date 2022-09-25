@@ -29,7 +29,17 @@ html {
 
 /* App Specific Styling */
 .App {
+  width: 100%;
   min-height: 100vh;
+  overflow: hidden;
   background-color: #d4d4d8;
   padding: 1rem;
+  box-sizing: border-box;
+}
+
+.App-header {
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
 }
