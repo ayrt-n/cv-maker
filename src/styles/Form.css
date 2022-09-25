@@ -147,6 +147,10 @@ input, textarea, select {
   text-align: inherit;
 }
 
+.control.grouped-buttons .button:not(:last-child) {
+  margin-right: 1rem;
+}
+
 .button {
   color: var(--black-50);
   background-color: var(--primary-600);
