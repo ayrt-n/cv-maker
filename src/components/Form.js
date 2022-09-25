@@ -12,7 +12,6 @@ class Form extends Component {
 
     this.state = {...this.props.resumeContent}
 
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleHeaderChange = this.handleHeaderChange.bind(this);
     this.handleResumeSectionChange = this.handleResumeSectionChange.bind(this);
     this.handledNestedResumeChange = this.handledNestedResumeChange.bind(this);
@@ -21,7 +20,17 @@ class Form extends Component {
     this.addNestedResumeElement = this.addNestedResumeElement.bind(this);
     this.removeNestedResumeElement = this.removeNestedResumeElement.bind(this);
 
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
+  }
+
+  handleHeaderChange(e) {
+    const tmpHeader = {...this.state.header}
+    tmpHeader[e.target.id] = e.target.value
+
+    this.setState({
+      header: tmpHeader
+    })
   }
 
   handleResumeSectionChange(e) {
@@ -77,15 +86,6 @@ class Form extends Component {
   handleFormSubmit(e) {
     e.preventDefault();
     this.props.handleFormSubmit(this.state);
-  }
-
-  handleHeaderChange(e) {
-    const tmpHeader = {...this.state.header}
-    tmpHeader[e.target.id] = e.target.value
-
-    this.setState({
-      header: tmpHeader
-    })
   }
 
   addNestedResumeElement(e, obj) {
