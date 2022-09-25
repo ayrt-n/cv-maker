@@ -51,8 +51,6 @@ class Form extends Component {
     const targetKey = e.target.dataset.objectKey;
     const targetNestedIndex = e.target.closest('[data-nested-index]').dataset.nestedIndex;
     const targetNestedKey = e.target.dataset.nestedObjectKey;
-
-    console.log(targetSection, targetIndex, targetKey, targetNestedIndex, targetNestedKey)
   
     this.setState(prevState => {
       const resumeSection = [...prevState[targetSection]];
