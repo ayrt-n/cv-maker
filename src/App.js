@@ -9,6 +9,7 @@ class App extends Component {
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.editResume = this.editResume.bind(this);
+    this.cancelEdit = this.cancelEdit.bind(this);
 
     this.state = {
       resumeContent: {
@@ -37,9 +38,15 @@ class App extends Component {
     });
   }
 
+  cancelEdit() {
+    this.setState({
+      formActive: false,
+    });
+  }
+
   render() {
       const activeComponent = this.state.formActive
-      ? <Form resumeContent={ this.state.resumeContent } handleFormSubmit={ this.handleFormSubmit } formActive={ this.state.formActive } />
+      ? <Form resumeContent={ this.state.resumeContent } handleFormSubmit={ this.handleFormSubmit } formActive={ this.state.formActive } edit={ this.state.edit } cancelEdit={ this.cancelEdit } />
       : <Resume resumeContent={ this.state.resumeContent } resumeHidden={ this.state.formActive } editResume={ this.editResume } />;
 
       return (
