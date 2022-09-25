@@ -15,6 +15,7 @@ class Work extends Component {
                     <div className="Work-item-details">{ work.employerName } | { work.location }</div>
                     <div className="Work-item-date">{ work.startDate } - { work.endDate }</div>
                   </div>
+                  <div className="Work-item-title">{ work.jobTitle }</div>
                   <ul className="Work-details">
                     {work.details.map((detail) => {
                         return (

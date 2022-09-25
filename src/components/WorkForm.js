@@ -81,6 +81,7 @@ class WorkForm extends Component {
 
                 <InputFormField value={workItem.employerName} label="Employer Name" id={`employer-${workItem.id}`} objectKey="employerName" handleInputChange={this.handleChange} />
                 <InputFormField value={workItem.location} label="Location" id={`location-${workItem.id}`} objectKey="location" handleInputChange={this.handleChange} />
+                <InputFormField value={workItem.jobTitle} label="Job Title" id={`title-${workItem.id}`} objectKey="jobTitle" handleInputChange={this.handleChange} />
                 <InputFormField value={workItem.startDate} label="Start Date" id={`start-${workItem.id}`} objectKey="startDate" handleInputChange={this.handleChange} />
                 <InputFormField value={workItem.endDate} label="End Date" id={`end-${workItem.id}`} objectKey="endDate" handleInputChange={this.handleChange} />
 
