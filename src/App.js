@@ -13,7 +13,7 @@ class App extends Component {
 
     this.state = {
       resumeContent: {
-        header: {},
+        header: { name: '', location: '', phone: '', email: '' },
         skills: [],
         educationHistory: [],
         workExperience: [],
