@@ -1,109 +1,132 @@
-import React, { Component } from "react";
-import InputFormField from "./InputFormField";
-import NestedInputFormField from "./NestedInputFormField";
-import FormSectionSubHeader from "./FormSectionSubHeader";
-import LineButton from "./LineButton";
+import InputFormField from './InputFormField';
+import NestedInputFormField from './NestedInputFormField';
+import FormSectionSubHeader from './FormSectionSubHeader';
+import LineButton from './LineButton';
 import '../styles/Form.css';
 import uniqid from 'uniqid';
 
-class WorkForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleWorkDetailChange = this.handleWorkDetailChange.bind(this);
-    this.addWorkExperience = this.addWorkExperience.bind(this);
-    this.removeWorkExperience = this.removeWorkExperience.bind(this);
-    this.addWorkDetail = this.addWorkDetail.bind(this);
-    this.removeWorkDetail = this.removeWorkDetail.bind(this);
-  }
-
-  createJobDescriptionObj() {
-    return {
+function WorkForm (props) {
+  const createJobDescriptionObj = () => {
+    return ({
       text: '',
       id: uniqid(),
-    }
-  }
+    });
+  };
 
-  createWorkExperienceObj() {
-    return {
-      employerName: "",
-      location: "",
-      startDate: "",
-      endDate: "",
-      jobTitle: "",
+  const createWorkExperienceObj = () => {
+    return ({
+      employerName: '',
+      location: '',
+      startDate: '',
+      endDate: '',
+      jobTitle: '',
       details: [
         {
-          text: "",
+          text: '',
           id: uniqid(),
         }
       ],
       id: uniqid(),
-    }
+    });
   }
 
-  handleChange(e) {
-    this.props.handleChange(e);
-  }
-
-  handleWorkDetailChange(e) {
-    this.props.handleWorkDetailChange(e);
-  }
-
-  addWorkExperience(e) {
+  const addWorkExperience = (e) => {
     e.preventDefault();
-    this.props.addWorkExperience(e, this.createWorkExperienceObj());
-  }
+    props.addWorkExperience(e, createWorkExperienceObj());
+  };
 
-  removeWorkExperience(e) {
+  const removeWorkExperience = (e) => {
     e.preventDefault();
-    this.props.removeWorkExperience(e);
-  }
+    props.removeWorkExperience(e);
+  };
 
-  addWorkDetail(e) {
+  const addWorkDetail = (e) => {
     e.preventDefault();
-    this.props.addWorkDetail(e, this.createJobDescriptionObj());
-  }
+    props.addWorkDetail(e, createJobDescriptionObj());
+  };
 
-  removeWorkDetail(e) {
+  const removeWorkDetail = (e) => {
     e.preventDefault();
-    this.props.removeWorkDetail(e);
-  }
+    props.removeWorkDetail(e);
+  };
 
-  render() {
-    return (
-      <div className="Form-section" data-section="workExperience">
-        <h1 className="Form-section-header">Work Experience</h1>
-        { this.props.workExperience.map((workItem, index) => {
-            return(
-              <div key={ workItem.id } data-section-index={ index } className="Form-sub-section">
-                <FormSectionSubHeader section="Work Experience" index={ index } handleClick={ this.removeWorkExperience } />
+  return (
+    <div className='Form-section' data-section='workExperience'>
+      <h1 className='Form-section-header'>Work Experience</h1>
+      { props.workExperience.map((workItem, index) => {
+          return(
+            <div key={ workItem.id } data-section-index={ index } className='Form-sub-section'>
+              <FormSectionSubHeader
+                section='Work Experience'
+                index={ index }
+                handleClick={ removeWorkExperience }
+              />
 
-                <InputFormField value={workItem.employerName} label="Employer Name" id={`employer-${workItem.id}`} objectKey="employerName" handleInputChange={this.handleChange} />
-                <InputFormField value={workItem.location} label="Location" id={`location-${workItem.id}`} objectKey="location" handleInputChange={this.handleChange} />
-                <InputFormField value={workItem.jobTitle} label="Job Title" id={`title-${workItem.id}`} objectKey="jobTitle" handleInputChange={this.handleChange} />
-                <InputFormField value={workItem.startDate} label="Start Date" id={`start-${workItem.id}`} objectKey="startDate" handleInputChange={this.handleChange} />
-                <InputFormField value={workItem.endDate} label="End Date" id={`end-${workItem.id}`} objectKey="endDate" handleInputChange={this.handleChange} />
+              <InputFormField
+                value={workItem.employerName}
+                label='Employer Name'
+                id={`employer-${workItem.id}`}
+                objectKey='employerName'
+                handleInputChange={props.handleChange }
+              />
+              <InputFormField
+                value={workItem.location}
+                label='Location'
+                id={`location-${workItem.id}`}
+                objectKey='location'
+                handleInputChange={props.handleChange}
+              />
+              <InputFormField
+                value={workItem.jobTitle}
+                label='Job Title'
+                id={`title-${workItem.id}`}
+                objectKey='jobTitle'
+                handleInputChange={props.handleChange}
+              />
+              <InputFormField
+                value={workItem.startDate}
+                label='Start Date'
+                id={`start-${workItem.id}`}
+                objectKey='startDate'
+                handleInputChange={props.handleChange}
+              />
+              <InputFormField
+                value={workItem.endDate}
+                label='End Date'
+                id={`end-${workItem.id}`}
+                objectKey='endDate'
+                handleInputChange={props.handleChange}
+              />
 
-                <label htmlFor={`details-${workItem.id}`} className="label">Job Description</label>
-                { workItem.details.map((detail, detail_index) => {
-                      return (
-                        <div key={ detail.id } data-nested-index={ detail_index }>
-                          <NestedInputFormField value={ detail.text } id={`details-${workItem.id}`} objectKey="details" nestedObjectKey="text" handleInputChange={this.handleWorkDetailChange} handleClick={ this.removeWorkDetail } />
-                        </div>
-                      );
-                    }
-                  )
-                }
-                <LineButton handleClick={ this.addWorkDetail } objectKey="details" text="Add Job Description"/>
-              </div>
-            );
-          })
-        }
-        <LineButton handleClick={ this.addWorkExperience } text="Add Work Experience" />
-      </div>
-    );
-  }
+              <label htmlFor={`details-${workItem.id}`} className='label'>Job Description</label>
+              { workItem.details.map((detail, detail_index) => {
+                    return (
+                      <div key={ detail.id } data-nested-index={ detail_index }>
+                        <NestedInputFormField
+                          value={ detail.text }
+                          id={`details-${workItem.id}`}
+                          objectKey='details'
+                          nestedObjectKey='text'
+                          handleInputChange={props.handleWorkDetailChange}
+                          handleClick={removeWorkDetail}
+                        />
+                      </div>
+                    );
+                  }
+                )
+              }
+              <LineButton
+                handleClick={ addWorkDetail }
+                objectKey='details'
+                text='Add Job Description'
+              />
+            </div>
+          );
+        })
+      }
+      <LineButton handleClick={ addWorkExperience } text='Add Work Experience' />
+    </div>
+  );
 }
 
 export default WorkForm;

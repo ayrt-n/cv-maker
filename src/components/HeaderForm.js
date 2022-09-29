@@ -1,31 +1,38 @@
-import React, { Component } from "react";
-import InputFormField from "./InputFormField";
+import InputFormField from './InputFormField';
 import '../styles/Form.css';
 
-class HeaderForm extends Component {
-  constructor(props) {
-    super(props);
+function HeaderForm(props) {
+  const { name, location, phone, email } = props.header;
 
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    this.props.handleChange(e);
-  }
-
-  render() {
-    const { name, location, phone, email } = { ...this.props.header }
-
-    return (
-      <div className="Form-section">
-        <h1 className="Form-section-header">Personal Details</h1>
-        <InputFormField value={ name } label="Full Name" id="name" handleInputChange={ this.handleChange } />
-        <InputFormField value={ location } label="Location" id="location" handleInputChange={ this.handleChange } />
-        <InputFormField value={ phone } label="Phone Number" id="phone" handleInputChange={ this.handleChange } />
-        <InputFormField value={ email } label="E-mail" id="email" handleInputChange={ this.handleChange } />
-      </div>
-    );
-  }
+  return (
+    <div className='Form-section'>
+      <h1 className='Form-section-header'>Personal Details</h1>
+      <InputFormField
+        value={ name }
+        label='Full Name'
+        id='name'
+        handleInputChange={ props.handleChange }
+      />
+      <InputFormField
+        value={ location }
+        label='Location'
+        id='location'
+        handleInputChange={ props.handleChange }
+      />
+      <InputFormField
+        value={ phone }
+        label='Phone Number'
+        id='phone'
+        handleInputChange={ props.handleChange }
+      />
+      <InputFormField
+        value={ email }
+        label='E-mail'
+        id='email'
+        handleInputChange={ props.handleChange }
+      />
+    </div>
+  );
 }
 
 export default HeaderForm;

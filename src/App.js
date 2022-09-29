@@ -1,61 +1,53 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Resume from "./components/Resume";
 import Form from "./components/Form";
 import './App.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+function App(props) {
+  const [resumeContent, setResumeContent] = useState({
+    header: { name: '', location: '', phone: '', email: '' },
+    skills: [],
+    educationHistory: [],
+    workExperience: [],
+    projects: [],
+  });
 
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.editResume = this.editResume.bind(this);
-    this.cancelEdit = this.cancelEdit.bind(this);
+  const [formActive, setFormActive] = useState(true);
+  const [edit, setEdit] = useState(false);
 
-    this.state = {
-      resumeContent: {
-        header: { name: '', location: '', phone: '', email: '' },
-        skills: [],
-        educationHistory: [],
-        workExperience: [],
-        projects: [],
-      },
-      formActive: true,
-      edit: false,
-    }
-  }
+  const handleFormSubmit = (newResumeContent) => {
+    setResumeContent(newResumeContent);
+    setFormActive(false);
+  };
 
-  handleFormSubmit(newResumeContent) {
-    this.setState({
-      resumeContent: newResumeContent,
-      formActive: false,
-    })
-  }
+  const editResume = () => {
+    setFormActive(true);
+    setEdit(true);
+  };
 
-  editResume() {
-    this.setState({
-      formActive: true,
-      edit: true,
-    });
-  }
+  const cancelEdit = () => {
+    setFormActive(false);
+  };
 
-  cancelEdit() {
-    this.setState({
-      formActive: false,
-    });
-  }
-
-  render() {
-      const activeComponent = this.state.formActive
-      ? <Form resumeContent={ this.state.resumeContent } handleFormSubmit={ this.handleFormSubmit } formActive={ this.state.formActive } edit={ this.state.edit } cancelEdit={ this.cancelEdit } />
-      : <Resume resumeContent={ this.state.resumeContent } resumeHidden={ this.state.formActive } editResume={ this.editResume } />;
-
-      return (
-      <div className="App">
-        <h1 className="App-header">CV Maker</h1>
-        { activeComponent }
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <h1 className="App-header">CV Maker</h1>
+      {formActive
+        ? <Form
+            resumeContent={ resumeContent }
+            handleFormSubmit={ handleFormSubmit }
+            formActive={ formActive }
+            edit={ edit }
+            cancelEdit={ cancelEdit }
+          />
+        : <Resume
+            resumeContent={ resumeContent }
+            resumeHidden={ formActive }
+            editResume={ editResume }
+          />
+      }
+    </div>
+  );
 }
 
 export default App;

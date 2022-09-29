@@ -1,105 +1,111 @@
-import React, { Component } from "react";
-import InputFormField from "./InputFormField";
-import NestedInputFormField from "./NestedInputFormField";
-import FormSectionSubHeader from "./FormSectionSubHeader";
-import LineButton from "./LineButton";
+import InputFormField from './InputFormField';
+import NestedInputFormField from './NestedInputFormField';
+import FormSectionSubHeader from './FormSectionSubHeader';
+import LineButton from './LineButton';
 import '../styles/Form.css';
 import uniqid from 'uniqid';
 
-class ProjectForm extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleProjectDetailChange = this.handleProjectDetailChange.bind(this);
-    this.addProject = this.addProject.bind(this);
-    this.removeProject = this.removeProject.bind(this);
-    this.addProjectDetail = this.addProjectDetail.bind(this);
-    this.removeProjectDetail = this.removeProjectDetail.bind(this);
-  }
-
-  createProjectDescriptionObj() {
-    return {
+function ProjectForm(props) {
+  const createProjectDescriptionObj = () => {
+    return ({
       text: '',
       id: uniqid(),
-    }
-  }
+    });
+  };
 
-  createProjectObj() {
-    return {
-      name: "",
-      startDate: "",
-      endDate: "",
+  const createProjectObj = () => {
+    return ({
+      name: '',
+      startDate: '',
+      endDate: '',
       details: [
         {
-          text: "",
+          text: '',
           id: uniqid(),
         }
       ],
       id: uniqid(),
-    }
-  }
+    });
+  };
 
-  handleChange(e) {
-    this.props.handleChange(e);
-  }
-
-  handleProjectDetailChange(e) {
-    this.props.handleProjectDetailChange(e);
-  }
-
-  addProject(e) {
+  const addProject = (e) => {
     e.preventDefault();
-    this.props.addProject(e, this.createProjectObj());
-  }
+    props.addProject(e, createProjectObj());
+  };
 
-  removeProject(e) {
+  const removeProject = (e) => {
     e.preventDefault();
-    this.props.removeProject(e);
-  }
+    props.removeProject(e);
+  };
 
-  addProjectDetail(e) {
+  const addProjectDetail = (e) => {
     e.preventDefault();
-    this.props.addProjectDetail(e, this.createProjectDescriptionObj());
-  }
+    props.addProjectDetail(e, createProjectDescriptionObj());
+  };
 
-  removeProjectDetail(e) {
+  const removeProjectDetail = (e) => {
     e.preventDefault();
-    this.props.removeProjectDetail(e);
-  }
+    props.removeProjectDetail(e);
+  };
 
-  render() {
-    return (
-      <div className="Form-section" data-section="projects">
-        <h1 className="Form-section-header">Projects</h1>
-        { this.props.projects.map((project, index) => {
-            return(
-              <div key={ project.id } data-section-index={ index } className="Form-sub-section">
-                <FormSectionSubHeader section="Project" index={ index } handleClick={ this.removeProject } />
+  return (
+    <div className='Form-section' data-section='projects'>
+      <h1 className='Form-section-header'>Projects</h1>
+      { props.projects.map((project, index) => {
+          return(
+            <div key={ project.id } data-section-index={ index } className='Form-sub-section'>
+              <FormSectionSubHeader section='Project' index={ index } handleClick={ removeProject } />
 
-                <InputFormField value={project.name} label="Project Name" id={`name-${project.id}`} objectKey="name" handleInputChange={this.handleChange} />
-                <InputFormField value={project.startDate} label="Start Date" id={`start-${project.id}`} objectKey="startDate" handleInputChange={this.handleChange} />
-                <InputFormField value={project.endDate} label="End Date" id={`end-${project.id}`} objectKey="endDate" handleInputChange={this.handleChange} />
+              <InputFormField
+                value={project.name}
+                label='Project Name'
+                id={`name-${project.id}`}
+                objectKey='name'
+                handleInputChange={props.handleChange}
+              />
+              <InputFormField
+                value={project.startDate}
+                label='Start Date'
+                id={`start-${project.id}`}
+                objectKey='startDate'
+                handleInputChange={props.handleChange}
+              />
+              <InputFormField
+                value={project.endDate}
+                label='End Date'
+                id={`end-${project.id}`}
+                objectKey='endDate'
+                handleInputChange={props.handleChange}
+              />
 
-                <label htmlFor={`details-${project.id}`} className="label">Project Description</label>
-                { project.details.map((detail, detail_index) => {
-                      return (
-                        <div key={ detail.id } data-nested-index={ detail_index }>
-                          <NestedInputFormField value={ detail.text } id={`details-${project.id}`} objectKey="details" nestedObjectKey="text" handleInputChange={ this.handleProjectDetailChange } handleClick={ this.removeProjectDetail } />
-                        </div>
-                      );
-                    }
-                  )
-                }
-                <LineButton handleClick={ this.addProjectDetail } objectKey="details" text="Add Project Description"/>
-              </div>
-            );
-          })
-        }
-        <LineButton handleClick={ this.addProject } text="Add Project" />
-      </div>
-    );
-  }
+              <label htmlFor={`details-${project.id}`} className='label'>Project Description</label>
+              { project.details.map((detail, detail_index) => {
+                    return (
+                      <div key={ detail.id } data-nested-index={ detail_index }>
+                        <NestedInputFormField
+                          value={ detail.text }
+                          id={`details-${project.id}`}
+                          objectKey='details'
+                          nestedObjectKey='text'
+                          handleInputChange={ props.handleProjectDetailChange }
+                          handleClick={ removeProjectDetail } />
+                      </div>
+                    );
+                  }
+                )
+              }
+              <LineButton
+                handleClick={ addProjectDetail }
+                objectKey='details'
+                text='Add Project Description'
+              />
+            </div>
+          );
+        })
+      }
+      <LineButton handleClick={ addProject } text='Add Project' />
+    </div>
+  );
 }
 
 export default ProjectForm;
